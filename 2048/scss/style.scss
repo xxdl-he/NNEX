@@ -1,0 +1,388 @@
+@import url('https://fonts.googleapis.com/css?family=Arvo');
+
+// https://coolors.co/f8ffe5-06d6a0-1b9aaa-ef476f-ffc43d
+$gridBg: #9a9a95;
+$color1: #FFC43D;
+$color2: #EF476F;
+$color3: #1B9AAA;
+$color4: #06D6A0;
+$placeholder-tile: #F8FFE5;
+$font-color: #555;
+
+$border-width: 7px;
+
+@function setFontColor($color) {
+  @if (lightness($color) > 80) {
+    @return $bg;
+  } @else {
+    @return $placeholder-tile;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: $color3;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  
+  &:hover {
+    color: darken($color3, 10%);
+  }
+  &:focus,
+  &:active {
+    color: darken($color3, 20%);
+  }
+}
+
+body,
+html {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: "Arvo", Helvetica, sans-serif;
+  font-family: 12px;
+  color: $font-color;
+  background: $placeholder-tile;
+}
+
+strong {
+  font-weight: bold;
+}
+
+p {
+  line-height: 1.6;
+}
+
+.inspired {
+  margin-top: 1em;
+  font-size: 0.9rem;
+  color: $gridBg;
+}
+
+header {
+  color: $placeholder-tile;
+  text-align: center;
+  
+  span {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 4rem;
+    height: 4rem;
+    line-height: 4rem;
+    margin: 0 0.4rem;
+    background: $color1;
+    
+    &:nth-of-type(2) {
+      background: $color2;
+    }
+    &:nth-of-type(3) {
+      background: $color3;
+    }
+    &:nth-of-type(4) {
+      background: $color4;
+    }
+  }
+}
+
+h1 {
+  font-size: 2.2rem;
+}
+
+.directions {
+  padding: 2rem;
+  border-top: 1px solid $gridBg;
+  border-bottom: 1px solid $gridBg;
+}
+
+.container {
+  margin: 0 auto;
+  padding-bottom: 3.5rem;
+  flex: 1;
+  width: 100%;
+  max-width: 550px;
+  text-align: center;
+  
+  header & {
+    padding: 0;
+    padding: 2rem 4rem;
+    max-width: 900px;
+  }
+}
+
+.scores {
+  display: flex;
+  justify-content: center;
+}
+
+.score-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.8rem;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: $font-color;
+  
+  &.best-score {
+    color: $gridBg;
+  }
+}
+
+.score {
+  margin-left: 1rem;
+  position: relative;
+  font-weight: bold;
+  font-size: 1.5rem;
+  vertical-align: middle;
+  text-align: right;
+}
+
+.game {
+  position: relative;
+  margin: 0 auto;
+  background: $gridBg;
+  padding: $border-width;
+  display: inline-block;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.tile-container {
+  border-radius: 6px;
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+
+.tile, .background {
+  display: block;
+  color: $placeholder-tile;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.background {
+  z-index: 1;
+  text-align: center;
+  border: $border-width solid $gridBg;
+  background-color: $placeholder-tile;
+}
+
+.tile {
+  opacity: 0;
+  z-index: 2;
+  background: $color1;
+  color: setFontColor($color1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  align-items: center;
+  transition: 110ms ease-in-out;
+  border-radius: 3px;
+  border: $border-width solid $gridBg;
+  box-sizing: border-box;
+  
+  &--4 {
+    background: $color2;
+    color: setFontColor($color2);
+  }
+  
+  &--8 {
+    background: $color3;
+    color: setFontColor($color3);
+  }
+  
+  &--16 {
+    background: $color4;
+    color: setFontColor($color4);
+  }
+  
+  &--32 {
+    background: lighten($color2, 10%);
+    color: setFontColor(lighten($color2, 10%));
+  }
+  
+  &--64 {
+    background: lighten($color3, 10%);
+    color: setFontColor(lighten($color3, 10%));
+  }
+  
+  &--128 {
+    background: lighten($color4, 10%);
+    color: setFontColor(lighten($color4, 10%));
+  }
+  
+  &--256 {
+    background: lighten($color1, 10%);
+    color: setFontColor(lighten($color1, 10%));
+  }
+  
+  &--512 {
+    background: darken($color2, 10%);
+    color: setFontColor(lighten($color2, 10%));
+  }
+  
+  &--1024 {
+    background: darken($color3, 10%);
+    color: setFontColor(lighten($color3, 10%));
+  }
+  
+  &--2048 {
+    background: darken($color4, 10%);
+    color: setFontColor(lighten($color4, 10%));
+  }
+  
+  &--pop {
+    animation: pop 0.3s ease-in-out;
+    animation-fill-mode: forwards;
+  }
+  
+  &--shrink {
+    animation: shrink 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+  }
+}
+
+.add {
+  position: absolute;
+  opacity: 0;
+  left: 120%;
+  top: 0;
+  font-size: 1rem;
+  color: $color3;
+  
+  &.active {  
+    animation: add 0.8s ease-in-out;
+  }
+}
+
+@keyframes add {
+  0% {
+    opacity: 1;
+    top: 0;
+  }
+  100% {
+    opacity: 0;
+    top: -100%;
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  90% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes shrink {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.9;
+  }
+}
+
+.end {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba($font-color, 0.9);
+  color: white;
+  font-size: 2rem;
+  transition: opacity 0.3s ease-in-out;
+  
+  btn {
+    margin-top: 1rem;
+  }
+  
+  &.active {
+    opacity: 1;
+    z-index: 1000;
+  }
+}
+
+.monkey {
+  font-size: 3rem;
+  margin: 1rem 0;
+}
+
+.btn {
+  font-family: inherit;
+  font-size: 1rem;
+  border: none;
+  background: $color3;
+  letter-spacing: 1px;
+  color: white;
+  font-weight: 300;
+  padding: 0.9em 1.5em;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: darken($color3, 10%);
+  }
+  
+  &:active {
+    background-color: darken($color3, 20%);
+  }
+  
+  &:focus {
+    box-shadow: 0 0 10px  darken($color3, 20%) inset;
+    outline: none;
+  }
+}
+
+.not-recommended {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  
+  & * + * {
+    margin-left: 10px;
+  }
+  
+  &__item + .not-recommended__annotation:before {
+    font-size: 30px;
+    content: "😐";
+  }
+  &__item:hover + .not-recommended__annotation:before {
+    content: "😟";
+  }
+  &__item:focus + .not-recommended__annotation:before {
+    content: "😄";
+  }
+  &__item:active + .not-recommended__annotation:before {
+    content: "😨";
+  }
+  
+}

@@ -1,0 +1,78 @@
+<!--**
+*
+*    又看源码，看你妹妹呀！
+                                        ,s555SB@@&
+*                                      :9H####@@@@@Xi
+*                                     1@@@@@@@@@@@@@@8
+*                                   ,8@@@@@@@@@B@@@@@@8
+*                                  :B@@@@X3hi8Bs;B@@@@@Ah,
+*             ,8i                  r@@@B:     1S ,M@@@@@@#8;
+*            1AB35.i:               X@@8 .   SGhr ,A@@@@@@@@S
+*            1@h31MX8                18Hhh3i .i3r ,A@@@@@@@@@5
+*            ;@&i,58r5                 rGSS:     :B@@@@@@@@@@A
+*             1#i  . 9i                 hX.  .: .5@@@@@@@@@@@1
+*              sG1,  ,G53s.              9#Xi;hS5 3B@@@@@@@B1
+*               .h8h.,A@@@MXSs,           #@H1:    3ssSSX@1
+*               s ,@@@@@@@@@@@@Xhi,       r#@@X1s9M8    .GA981
+*               ,. rS8H#@@@@@@@@@@#HG51;.  .h31i;9@r    .8@@@@BS;i;
+*                .19AXXXAB@@@@@@@@@@@@@@#MHXG893hrX#XGGXM@@@@@@@@@@MS
+*                s@@MM@@@hsX#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&,
+*              :GB@#3G@@Brs ,1GM@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@B,
+*            .hM@@@#@@#MX 51  r;iSGAM@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@8
+*          :3B@@@@@@@@@@@&9@h :Gs   .;sSXH@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:
+*      s&HA#@@@@@@@@@@@@@@M89A;.8S.       ,r3@@@@@@@@@@@@@@@@@@@@@@@@@@@r
+*   ,13B@@@@@@@@@@@@@@@@@@@5 5B3 ;.         ;@@@@@@@@@@@@@@@@@@@@@@@@@@@i
+*  5#@@#&@@@@@@@@@@@@@@@@@@9  .39:          ;@@@@@@@@@@@@@@@@@@@@@@@@@@@;
+*  9@@@X:MM@@@@@@@@@@@@@@@#;    ;31.         H@@@@@@@@@@@@@@@@@@@@@@@@@@:
+*   SH#@B9.rM@@@@@@@@@@@@@B       :.         3@@@@@@@@@@@@@@@@@@@@@@@@@@5
+*     ,:.   9@@@@@@@@@@@#HB5                 .M@@@@@@@@@@@@@@@@@@@@@@@@@B
+*           ,ssirhSM@&1;i19911i,.             s@@@@@@@@@@@@@@@@@@@@@@@@@@S
+*              ,,,rHAri1h1rh&@#353Sh:          8@@@@@@@@@@@@@@@@@@@@@@@@@#:
+*            .A3hH@#5S553&@@#h   i:i9S          #@@@@@@@@@@@@@@@@@@@@@@@@@A.
+*
+*
+*-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>中国象棋</title>
+    <link href="3_zzsc.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<div class="box" id="box">
+    <div class="chess_left">
+        <canvas id="chess">对不起，您的浏览器不支持HTML5，请升级浏览器至IE9、firefox或者谷歌浏览器！</canvas>
+        <audio src="click.wav" id="clickAudio" preload="auto"></audio>
+
+        <audio src="select.wav" id="selectAudio" preload="auto"></audio>
+        <div>
+            <div class="bn_box" id="bnBox">
+                <input type="button" name="offensivePlay" id="tyroPlay" value="新手水平"/>
+                <input type="button" name="offensivePlay" id="superPlay" value="中级水平"/>
+                <input type="button" name="button" id="" value="大师水平" disabled/>
+                <input type="button" name="offensivePlay" id="offensivePlay" value="先手开始"/>
+                <input type="button" name="defensivePlay" id="defensivePlay" value="后手开始"/>
+                <input type="button" name="regret" id="regretBn" value="悔棋"/>
+                <input type="button" name="billBn" id="billBn" value="棋谱" class="bn_box"/>
+                <input type="button" name="stypeBn" id="stypeBn" value="换肤"/>
+            </div>
+        </div>
+    </div>
+    <div class="chess_right" id="chessRight">
+        <select name="billList" id="billList">
+        </select>
+        <ol id="billBox" class="bill_box">
+        </ol>
+    </div>
+    <div id="moveInfo" class="move_info"></div>
+</div>
+
+</div>
+<script src="3_common.js"></script>
+<script src="3_play.js"></script>
+<script src="3_AI.js"></script>
+<script src="3_bill.js"></script>
+<script src="3_gambit.js"></script>
+</body>
+</html>

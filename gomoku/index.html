@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>五子棋</title>
+    <style type="text/css" media="screen">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            border:0;
+        }
+        input{outline:none;}
+        html,body{
+            width:100%;
+            height:100%;
+            overflow: hidden;
+        }
+        ol, ul ,li{list-style: none;}
+        .wrap{
+            max-width:750px;
+            max-height:750px;
+            margin: 0px auto;
+            background:#fc9e46;
+            position: relative;
+        }
+        #layout{
+            width:100%;
+            height:100%;
+            position: relative;
+            background:url('wzqbj2.png') center center no-repeat;
+            background-size: cover;
+        }
+
+        span.W{
+            background:#fff;
+        }
+
+        span.B{
+            background:#000;
+        }
+        span{
+            display: block;
+            border-radius:50%;
+            background:#000;
+            position: absolute;
+
+        }
+        #start,#win{
+            width:100%;
+            height:32px;
+            padding-bottom:1000px;
+            position: absolute;
+            text-align:center;
+            top:0;
+            left:0;
+        }
+        #win{
+            display: none;
+        }
+        #start input,#win input{
+            margin: 0 5px;
+            padding:5px 20px;
+            border:none;
+            border-radius:5px;
+            font-size:32px;
+            color:#fff;
+            background:#333;
+            box-shadow:1px 1px 1px #111,inset 0px 0px 2px #333;
+            cursor:pointer;
+        }
+        #start input:active,#win input:active{
+            background:#222;
+        }
+        #showwin{
+            width:100%;
+            height:100px;
+            line-height: 100px;
+            background:#333;
+            text-align:center;
+            position: absolute;
+            color:red;
+            font-size:30px;
+            font-weight:bold;
+            opacity:0.9;
+        }
+        #steps{
+            position: absolute;
+            width:100px;
+            text-align:center;
+            color:red;
+            font-size:18px;
+            font-weight:bold;
+            top:5px;
+            z-index:1;
+        }
+    </style>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script>
+
+        $(function(){
+            myPlay.init();
+        })
+
+        var myPlay = {
+
+            $steps : 0,
+
+            len : 15,   //棋盘长度
+            count : 0,
+
+            chessboard : [],  //棋盘布局数组
+
+            wins : [],   //赢法数组
+            myWin : [],
+            computerWin : [],
+
+            myScore : [],   //评分数组
+            computerScore : [],
+
+            starting : function(){
+
+                That = this;
+                var $start = $('#start');
+
+                $start.css({'padding-top':this.wrapH/2 - 25});
+
+                $start.find('input:last-of-type').on('click',function(){   //电脑先
+                    That.myFalling('B',7,7,2,That.$outobj,That.computerWin,That.myWin);
+                    $start.fadeOut(That.tablesize);
+                    $(this).off('click');
+                });
+
+                $start.find('input:first-of-type').on('click',function(){  //我先
+                    $start.fadeOut(That.tablesize);
+                    $(this).off('click');
+                    $start.find('input:last-of-type').off('click');
+                });
+            },
+
+            init : function(){
+
+                var winH = $('body').height(),
+                    $outobj = $('#layout');
+
+                $('.wrap').css({'width':winH*0.92, 'height':winH*0.92, 'margin-top':winH*0.02, 'padding':winH*0.02});
+
+                this.wrapH = $('.wrap').outerHeight();
+                this.$outobj = $outobj;
+                this.tablesize = $outobj.height()/this.len;
+
+                if($outobj.children().length > 0){
+                    $outobj.children().remove();
+                };
+
+                for(var i = 0; i<this.len; i++){  //棋盘和赢法数组初始化
+                    this.chessboard[i] = [];
+                    this.wins[i] = [];
+                    for(var j = 0; j<this.len; j++){
+                        this.chessboard[i][j] = 0;
+                        this.wins[i][j] = [];
+                    };
+                };
+
+                var len_4 = this.len - 4;
+
+                for(var i = 0; i<this.len; i++){   //横向赢法
+                    for(var j = 0; j<len_4; j++){
+                        for(var k = 0; k<5; k++){
+                            this.wins[i][j+k][this.count] = true;
+                        }
+                        this.count++;
+                    }
+                }
+
+                for(var i = 0; i<this.len; i++){   //纵向赢法
+                    for(var j = 0; j<len_4; j++){
+                        for(var k = 0; k<5; k++){
+                            this.wins[j+k][i][this.count] = true;
+                        }
+                        this.count++;
+                    }
+                }
+
+                for(var i = 0; i<len_4; i++){    //正斜赢法
+                    for(var j = 0; j<len_4; j++){
+                        for(var k = 0; k<5; k++){
+                            this.wins[i+k][j+k][this.count] = true;
+                        }
+                        this.count++;
+                    }
+                }
+
+                for(var i = 0; i<len_4; i++){   //反斜赢法
+                    for(var j = 14; j>3; j--){
+                        for(var k = 0; k<5; k++){
+                            this.wins[i+k][j-k][this.count] = true;
+                        }
+                        this.count++;
+                    }
+                }
+
+                for(var i = 0; i<this.count; i++){
+                    this.myWin[i] = 0;
+                    this.computerWin[i] = 0;
+                }
+
+                $('#steps strong').html(0);
+                this.$steps = 0;
+
+                this.starting(); //
+                this.falling();  //落子
+            },
+
+            falling : function(){
+
+                var That = this;
+
+                this.$outobj.on('click',function(){
+
+                    var ex = event.clientX,
+                        ey = event.clientY,
+
+                        thisX = $(this).offset().left,
+                        thisY = $(this).offset().top,
+
+                        dx = ex - thisX,
+                        dy = ey - thisY,
+                        arrx = parseInt(dx/That.tablesize),
+                        arry = parseInt(dy/That.tablesize);
+
+                    if(That.chessboard[arrx][arry] == 0){
+                        $('#steps strong').html(++That.$steps);
+                        That.myFalling('W',arrx,arry,1,$(this),That.myWin,That.computerWin,'恭喜恭喜！你赢了');
+                        var ob = That.score();
+                        That.myFalling('B',ob.x,ob.y,2,That.$outobj,That.computerWin,That.myWin,'电脑赢了，再接再厉');
+                    }
+                })
+            },
+
+            myFalling : function(classed,obx,oby,aNum,obj,Win1,Win2,str){
+
+                var createpiece = $('<span></span>');
+                createpiece.addClass(classed);
+                createpiece.css({'width':this.tablesize - 2, 'height':this.tablesize - 2, 'left':(obx*(this.tablesize)),'top':(oby*(this.tablesize))})
+                this.chessboard[obx][oby] = aNum;
+                obj.append(createpiece);
+
+                for(var k = 0; k<this.count; k++){
+                    if(this.wins[obx][oby][k]){
+                        Win1[k]++;
+                        Win2[k] = 6;
+                        if(Win1[k] == 5){
+                            this.winned(str);
+                        }
+                    }
+                }
+            },
+
+            score : function(){ //评分函数
+                var max = 0,
+                    fallclient = {
+                        x : 0,
+                        y : 0
+                    }
+
+                for(var i = 0; i<this.len; i++){  //评分数组初始化
+                    this.myScore[i] = [];
+                    this.computerScore[i] = [];
+                    for(var j = 0; j<this.len; j++){
+                        this.myScore[i][j] = 0;
+                        this.computerScore[i][j] = 0;
+                    }
+                }
+
+                for(var i = 0; i<this.len; i++){
+                    for(var j = 0; j<this.len; j++){
+                        if(this.chessboard[i][j] == 0){
+                            for(var k = 0; k<this.count; k++){
+                                if(this.wins[i][j][k]){
+
+                                    if(this.myWin[k] == 1){
+                                        this.myScore[i][j] += 200;
+                                    }else if(this.myWin[k] == 2){
+                                        this.myScore[i][j] += 400;
+                                    }else if(this.myWin[k] == 3){
+                                        this.myScore[i][j] += 2000;
+                                    }else if(this.myWin[k] == 4){
+                                        this.myScore[i][j] += 10000;
+                                    }
+
+                                    if(this.computerWin[k] == 1){
+                                        this.computerScore[i][j] += 200;
+                                    }else if(this.computerWin[k] == 2){
+                                        this.computerScore[i][j] += 420;
+                                    }else if(this.computerWin[k] == 3){
+                                        this.computerScore[i][j] += 2100;
+                                    }else if(this.computerWin[k] == 4){
+                                        this.computerScore[i][j] += 20000;
+                                    }
+                                }
+
+                            }
+                            if(this.myScore[i][j] > max){
+                                max = this.myScore[i][j];
+                                fallclient.x = i;
+                                fallclient.y = j;
+                            }else if(this.myScore[i][j] == max){
+                                if(this.computerScore[i][j] > this.computerScore[fallclient.x][fallclient.y]){
+                                    fallclient.x = i;
+                                    fallclient.y = j;
+
+                                }
+                            }
+
+                            if(this.computerScore[i][j] > max){
+                                max = this.computerScore[i][j];
+                                fallclient.x = i;
+                                fallclient.y = j;
+                            }else if(this.computerScore[i][j] == max){
+                                if(this.myScore[i][j] > this.myScore[fallclient.x][fallclient.y]){
+                                    fallclient.x = i;
+                                    fallclient.y = j;
+                                }
+                            }
+                        }
+
+                    }
+                }
+                return fallclient;
+            },
+
+            winned : function(str){
+
+                var $win = $('<div id="win"><input class="ck" type="button" name="" value="再来一局"><div id="showwin"></div></div>');
+
+                $win.css({'width':this.wrapH,'padding-top':this.wrapH/2});
+                $('.wrap').append($win);
+                $('#showwin').css({'left':this.wrapH,'top':this.wrapH/3-5});
+
+                $win.fadeIn(200, $.proxy(function() {
+                    $('#showwin').html(str).animate({
+                        width:this.wrapH,
+                        left:0
+                    },400);
+                },this));
+                this.reseting($win);
+            },
+
+            reseting : function(obj){
+                obj.find('.ck').on('click',function(){
+                    myPlay.init();
+                    obj.remove();
+                    $('#start').fadeIn();
+                    $(this).off('click');
+                })
+            },
+        }
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <div id="steps">步数：<strong>0</strong></div>
+    <div id="layout"></div>
+    <div id="start">
+        <input class="rx" type="button" name="" value="我先">
+        <input class="dnx" type="button" name="" value="电脑先">
+    </div>
+</div>
+</body>
+</html>
