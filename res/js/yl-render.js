@@ -562,7 +562,7 @@ YL.render = function(data) {
                 if (win.urlRandomToken) win.url = YL.util.updateUrlRandomToken(win.url);
                 if (win.openMode === 'outer') {
                     //外部打开
-                    window.open(win.url);
+                    window.location=win.url;
                     return;
                 }
                 win.urlOrigin = win.url; //保存原始地址
