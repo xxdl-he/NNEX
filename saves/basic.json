@@ -10,7 +10,7 @@
         "wallpaperSlideTime": 1519442460788,
         "wallpaperSlideIndex": 8,
         "openMax": 9,
-        "idCounter": 201,
+        "idCounter": 211,
         "themeColor": "rgba(53,110,121,1)",
         "autoThemeColor": true,
         "wallpapers": [
@@ -146,6 +146,72 @@
             "customTile": "",
             "urlRandomToken": true
         },
+        "yl-browser": {
+            "addressBar": true,
+            "autoRun": 0,
+            "background": false,
+            "badge": 0,
+            "desc": "浏览器",
+            "icon": {
+                "type": "fa",
+                "content": "internet-explorer",
+                "bg": "#3a55c2"
+            },
+            "openMode": "normal",
+            "plugin": false,
+            "position": {
+                "autoOffset": true,
+                "left": true,
+                "top": true,
+                "x": "x*0.1",
+                "y": "y*0.1"
+            },
+            "version": "1.0.0",
+            "poweredBy": "Yuri2",
+            "resizable": true,
+            "single": false,
+            "size": {
+                "height": "y*0.8-80",
+                "width": "x*0.8"
+            },
+            "title": "浏览器",
+            "url": "./res/apps/browser/index.html",
+            "customTile": "",
+            "urlRandomToken": true
+        },
+        "yl-server": {
+            "addressBar": false,
+            "autoRun": 1,
+            "background": false,
+            "badge": 0,
+            "desc": "YLUI官方后台服务",
+            "icon": {
+                "type": "fa",
+                "content": "yoast",
+                "bg": "#6b96cf"
+            },
+            "openMode": "min",
+            "plugin": true,
+            "position": {
+                "autoOffset": false,
+                "left": false,
+                "top": false,
+                "x": "4",
+                "y": "4"
+            },
+            "version": "1.0.0",
+            "poweredBy": "Yuri2",
+            "resizable": true,
+            "single": true,
+            "size": {
+                "height": "80",
+                "width": "160"
+            },
+            "title": "YLUI官方后台服务",
+            "url": "https://server.ylui.yuri2.cn",
+            "customTile": "",
+            "urlRandomToken": true
+        },
         "ylui-fa": {
             "addressBar": false,
             "autoRun": 0,
@@ -207,7 +273,7 @@
                 "height": "y*0.8-80",
                 "width": "x*0.8"
             },
-            "title": "Nicemusic",
+            "title": "NIcemusic",
             "url": "http://nicenav.cn/desktop-music/",
             "customTile": "",
             "urlRandomToken": true
@@ -307,7 +373,7 @@
                 "width": "x*0.8"
             },
             "title": "几何画板",
-            "url": "https://www.geogebra.org/calculator",
+            "url": "//www.geogebra.org/geometry",
             "customTile": "",
             "urlRandomToken": true
         },
@@ -508,12 +574,282 @@
             "url": "https://bbbug.com/",
             "customTile": "",
             "urlRandomToken": true
+        },
+        "ylui-apps-calculator": {
+            "addressBar": false,
+            "autoRun": 0,
+            "background": false,
+            "badge": 0,
+            "desc": "这是一款jquery实现简单计算器代码。该jquery计算器使用 Bootstrap 4进行布局，并结合math.js数学库，实现简单的加减乘除和平方，开方等数学计算。",
+            "icon": {
+                "type": "fa",
+                "content": "calculator",
+                "bg": "#375980"
+            },
+            "openMode": "normal",
+            "plugin": false,
+            "position": {
+                "autoOffset": true,
+                "left": true,
+                "top": true,
+                "x": "x*0.05",
+                "y": "y*0.05"
+            },
+            "version": "1.0.0",
+            "poweredBy": "素材来源于网络",
+            "resizable": true,
+            "single": false,
+            "size": {
+                "height": "496",
+                "width": "324"
+            },
+            "title": "科学计算器",
+            "url": "https://appstore.ylui.yuri2.cn:/apps/calculator/index.html",
+            "customTile": "",
+            "urlRandomToken": true
+        },
+        "app-205": {
+            "addressBar": false,
+            "autoRun": 0,
+            "background": false,
+            "badge": 0,
+            "desc": "",
+            "icon": {
+                "type": "str",
+                "content": "课堂同步",
+                "bg": "rgb(45,166,63)"
+            },
+            "openMode": "normal",
+            "plugin": false,
+            "position": {
+                "autoOffset": true,
+                "left": true,
+                "top": true,
+                "x": "x*0.05",
+                "y": "y*0.05"
+            },
+            "version": "1.0.0",
+            "poweredBy": "",
+            "resizable": true,
+            "single": false,
+            "size": {
+                "height": "y*0.8-80",
+                "width": "x*0.8"
+            },
+            "title": "课堂同步",
+            "url": "http://xxdlyzbb.gitee.io/nex-u/viewer.html",
+            "customTile": "",
+            "urlRandomToken": true
+        },
+        "app-206": {
+            "addressBar": false,
+            "autoRun": 0,
+            "background": false,
+            "badge": 0,
+            "desc": "",
+            "icon": {
+                "type": "str",
+                "content": "哔哩哔哩",
+                "bg": "rgb(37,33,199)"
+            },
+            "openMode": "normal",
+            "plugin": false,
+            "position": {
+                "autoOffset": true,
+                "left": true,
+                "top": true,
+                "x": "x*0.05",
+                "y": "y*0.05"
+            },
+            "version": "1.0.0",
+            "poweredBy": "",
+            "resizable": true,
+            "single": false,
+            "size": {
+                "height": "y*0.8-80",
+                "width": "x*0.8"
+            },
+            "title": "哔哩哔哩",
+            "url": "//bilibili.com",
+            "customTile": "",
+            "urlRandomToken": true
+        },
+        "Gitee": {
+            "addressBar": false,
+            "autoRun": 0,
+            "background": false,
+            "badge": 0,
+            "desc": "",
+            "icon": {
+                "type": "str",
+                "content": "Gitee",
+                "bg": "rgb(114,175,166)"
+            },
+            "openMode": "outer",
+            "plugin": false,
+            "position": {
+                "autoOffset": true,
+                "left": true,
+                "top": true,
+                "x": "x*0.05",
+                "y": "y*0.05"
+            },
+            "version": "1.0.0",
+            "poweredBy": "",
+            "resizable": true,
+            "single": false,
+            "size": {
+                "height": "y*0.8-80",
+                "width": "x*0.8"
+            },
+            "title": "Gitee",
+            "url": "//gitee.com",
+            "customTile": "",
+            "urlRandomToken": true
+        },
+        "app-208": {
+            "addressBar": false,
+            "autoRun": 0,
+            "background": false,
+            "badge": 0,
+            "desc": "",
+            "icon": {
+                "type": "str",
+                "content": "化学自习室",
+                "bg": "rgb(95,148,59)"
+            },
+            "openMode": "normal",
+            "plugin": false,
+            "position": {
+                "autoOffset": true,
+                "left": true,
+                "top": true,
+                "x": "x*0.05",
+                "y": "y*0.05"
+            },
+            "version": "1.0.0",
+            "poweredBy": "",
+            "resizable": true,
+            "single": false,
+            "size": {
+                "height": "y*0.8-80",
+                "width": "x*0.8"
+            },
+            "title": "化学自习室",
+            "url": "//www.hxzxs.cn",
+            "customTile": "",
+            "urlRandomToken": true
+        },
+        "app-209": {
+            "addressBar": false,
+            "autoRun": 0,
+            "background": false,
+            "badge": 0,
+            "desc": "",
+            "icon": {
+                "type": "str",
+                "content": "元素资料",
+                "bg": "rgb(149,122,182)"
+            },
+            "openMode": "normal",
+            "plugin": false,
+            "position": {
+                "autoOffset": true,
+                "left": true,
+                "top": true,
+                "x": "x*0.05",
+                "y": "y*0.05"
+            },
+            "version": "1.0.0",
+            "poweredBy": "",
+            "resizable": true,
+            "single": false,
+            "size": {
+                "height": "y*0.8-80",
+                "width": "x*0.8"
+            },
+            "title": "元素资料",
+            "url": "//www.hxzxs.cn/plus/list.php?tid=622",
+            "customTile": "",
+            "urlRandomToken": true
+        },
+        "app-210": {
+            "addressBar": false,
+            "autoRun": 0,
+            "background": false,
+            "badge": 0,
+            "desc": "",
+            "icon": {
+                "type": "str",
+                "content": "化学资料库",
+                "bg": "rgb(94,39,174)"
+            },
+            "openMode": "normal",
+            "plugin": false,
+            "position": {
+                "autoOffset": true,
+                "left": true,
+                "top": true,
+                "x": "x*0.05",
+                "y": "y*0.05"
+            },
+            "version": "1.0.0",
+            "poweredBy": "",
+            "resizable": true,
+            "single": false,
+            "size": {
+                "height": "y*0.8-80",
+                "width": "x*0.8"
+            },
+            "title": "化学资料库",
+            "url": "//www.hxzxs.cn/plus/list.php?tid=649",
+            "customTile": "",
+            "urlRandomToken": true
+        },
+        "PHP": {
+            "addressBar": false,
+            "autoRun": 0,
+            "background": false,
+            "badge": 0,
+            "desc": "",
+            "icon": {
+                "type": "str",
+                "content": "PHP",
+                "bg": "rgb(58,118,7)"
+            },
+            "openMode": "normal",
+            "plugin": false,
+            "position": {
+                "autoOffset": true,
+                "left": true,
+                "top": true,
+                "x": "x*0.05",
+                "y": "y*0.05"
+            },
+            "version": "1.0.0",
+            "poweredBy": "",
+            "resizable": true,
+            "single": false,
+            "size": {
+                "height": "y*0.8-80",
+                "width": "x*0.8"
+            },
+            "title": "PHP",
+            "url": "f.html",
+            "customTile": "",
+            "urlRandomToken": true
         }
     },
     "shortcuts": [
         {
+            "app": "yl-browser",
+            "title": "浏览器",
+            "params": {},
+            "hash": ""
+        },
+        {
             "app": "app-190",
-            "title": "NIcemusic",
+            "title": "Nicemusic",
             "params": {},
             "hash": ""
         },
@@ -564,6 +900,54 @@
             "title": "BBBUG",
             "params": {},
             "hash": ""
+        },
+        {
+            "app": "ylui-apps-calculator",
+            "title": "科学计算器",
+            "params": {},
+            "hash": ""
+        },
+        {
+            "app": "app-205",
+            "title": "课堂同步",
+            "params": {},
+            "hash": ""
+        },
+        {
+            "app": "app-206",
+            "title": "哔哩哔哩",
+            "params": {},
+            "hash": ""
+        },
+        {
+            "app": "Gitee",
+            "title": "Gitee",
+            "params": {},
+            "hash": ""
+        },
+        {
+            "app": "app-208",
+            "title": "化学自习室",
+            "params": {},
+            "hash": ""
+        },
+        {
+            "app": "app-209",
+            "title": "元素资料",
+            "params": {},
+            "hash": ""
+        },
+        {
+            "app": "app-210",
+            "title": "化学资料库",
+            "params": {},
+            "hash": ""
+        },
+        {
+            "app": "PHP",
+            "title": "PHP",
+            "params": {},
+            "hash": ""
         }
     ],
     "tiles": [
@@ -572,12 +956,23 @@
             "data": [
                 {
                     "x": 0,
-                    "y": 0,
+                    "y": 2,
                     "w": 4,
                     "h": 2,
                     "app": "yl-system",
                     "title": "系统设置",
                     "i": "110",
+                    "params": {},
+                    "hash": ""
+                },
+                {
+                    "x": 2,
+                    "y": 0,
+                    "w": 2,
+                    "h": 2,
+                    "app": "yl-browser",
+                    "title": "浏览器",
+                    "i": "146",
                     "params": {},
                     "hash": ""
                 }
@@ -595,11 +990,23 @@
                 "hash": ""
             },
             {
+                "app": "yl-browser",
+                "title": "浏览器",
+                "params": {},
+                "hash": ""
+            },
+            {
                 "app": "yl-system",
                 "title": "系统设置"
             }
         ],
         "menu": {
+            "itemPushed-85": {
+                "app": "yl-browser",
+                "title": "浏览器",
+                "params": {},
+                "hash": ""
+            },
             "itemPushed-96": {
                 "app": "yl-system",
                 "title": "系统设置",
@@ -609,6 +1016,12 @@
             "itemPushed-200": {
                 "app": "app-199",
                 "title": "为知云笔记",
+                "params": {},
+                "hash": ""
+            },
+            "ylui-apps-calculator": {
+                "app": "ylui-apps-calculator",
+                "title": "科学计算器",
                 "params": {},
                 "hash": ""
             }
