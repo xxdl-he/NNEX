@@ -13,9 +13,9 @@ YL.static = {
     /**————————————————————————————————————————————————————————————————————————————————————————————*/
     /** YLUI基础设置 */
     lang: 'zh-cn', //语言
-    localStorageName: "ylui-storage", //ls存储名
+    localStorageName: "nex-storage", //ls存储名
     lockedApps: [], // 锁定的应用（不允许被脚本修改）
-    trustedApps: ['yl-server'], // 受信任的应用（可以使用敏感API）
+    trustedApps: [], // 受信任的应用（可以使用敏感API）
     debug: false, //启用更多调试信息
     beforeOnloadEnable: false, //启用关闭前询问（打包app时请关闭防止出错）
     WarningPerformanceInIE: true, //在IE下提示体验不佳信息
