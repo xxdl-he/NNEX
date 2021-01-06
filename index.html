@@ -156,7 +156,7 @@
 
                     <div class="win-drag-placeholder">
                         <div class="mask" style="z-index: 2" v-show="runtime.drag"></div>
-                        <iframe :id="w.idIframe" :name="id" class="frm" security="restricted" allowfullscreen="true" sandbox="allow-presentation allow-popups-to-escape-sandbox allow-popups allow-scripts allow-forms allow-top-navigation allow-same-origin" :src="w.url"></iframe>
+                        <iframe :id="w.idIframe" :name="id" class="frm" security="restricted" allowfullscreen="true" sandbox="allow-presentation allow-popups-to-escape-sandbox allow-popups allow-scripts allow-forms allow-same-origin" :src="w.url"></iframe>
                         <div v-show="w.resizable" class="win-resize" @mousedown="winResizeMouseDown(id,$event)"></div>
                         <div class="win-move" @contextMenu="winContextMenu(id,$event)" @mousedown="winTitleMouseDown(id,$event)" @touchstart="winTitleMouseDown(id,$event)"></div>
                     </div>
