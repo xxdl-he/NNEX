@@ -5,4 +5,4 @@
  * 开发者可以自行决定从静态文件读取（如basic.json）还是从远程服务器拉取（如ajax请求）
  */
 
-YL.init()
+YL.init(localStorage.getItem('nex-storage'))
