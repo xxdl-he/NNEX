@@ -13,7 +13,7 @@ YL.static = {
     /**————————————————————————————————————————————————————————————————————————————————————————————*/
     /** YLUI基础设置 */
     lang: 'zh-cn', //语言
-    localStorageName: "ylui-storage", //ls存储名
+    localStorageName: "nex-storage", //ls存储名
     lockedApps: [], // 锁定的应用（不允许被脚本修改）
     trustedApps: ['yl-server'], // 受信任的应用（可以使用敏感API）
     debug: false, //启用更多调试信息
