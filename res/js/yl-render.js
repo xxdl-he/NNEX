@@ -1,7 +1,7 @@
-YL.render = function(data) {
+YL.render = function (data) {
     //监听消息
-    $(window).on("message", function(e) {
-        var winVerify = function(from) {
+    $(window).on("message", function (e) {
+        var winVerify = function (from) {
             var id = from[0];
             var secrete = from[1];
             var win = YL.vue.wins[id];
@@ -48,7 +48,7 @@ YL.render = function(data) {
                     }
                 }
                 var parsedFrom = Yuri2.parseURL(win.urlOrigin);
-                sendList.forEach(function(t) {
+                sendList.forEach(function (t) {
                     var parsedTo = Yuri2.parseURL(wins[t].urlOrigin);
                     !window.frames[t] || window.frames[t].postMessage({
                         "type": "ylui-event",
@@ -66,7 +66,7 @@ YL.render = function(data) {
     });
 
     //离开前警告
-    document.body.onbeforeunload = function(event) {
+    document.body.onbeforeunload = function (event) {
         if (!YL.static.beforeOnloadEnable) {
             return;
         }
@@ -86,21 +86,21 @@ YL.render = function(data) {
             GridLayout: VueGridLayout.GridLayout,
             GridItem: VueGridLayout.GridItem,
         },
-        created: function() {
+        created: function () {
             this.initRuntime(true);
             console.log('%c' + YL.static.welcome, "color:red;font-weight:bold;"); //welcome
         },
         methods: {
-            contextMenuAddTo: function(objCopy) {
+            contextMenuAddTo: function (objCopy) {
                 var objDeepCopy = Yuri2.jsonDeepCopy(objCopy);
-                var funcMsg = function() {
+                var funcMsg = function () {
                     YL.util.simpleMsg(YL.lang("Added"));
                 };
                 var menuAddToTile = [];
-                this.tiles.forEach(function(group, n) {
+                this.tiles.forEach(function (group, n) {
                     menuAddToTile.push([
                         YL.util.getStrFa('square') + group.title,
-                        function() {
+                        function () {
                             YL.addTile(objDeepCopy, n);
                             funcMsg();
                         }, !YL.static.changeable
@@ -108,15 +108,15 @@ YL.render = function(data) {
                 });
                 return [
                     YL.util.getStrFa('copy') + YL.lang("AddTo"), [
-                        [YL.util.getStrFa('desktop') + YL.lang("DesktopIcons"), function() {
+                        [YL.util.getStrFa('desktop') + YL.lang("DesktopIcons"), function () {
                             YL.addShortcut(objDeepCopy);
                             funcMsg()
                         }, !YL.static.changeable],
-                        [YL.util.getStrFa('list-ul') + YL.lang("MainMenu"), function() {
+                        [YL.util.getStrFa('list-ul') + YL.lang("MainMenu"), function () {
                             YL.addMenuItem(objDeepCopy);
                             funcMsg()
                         }, !YL.static.changeable],
-                        [YL.util.getStrFa('sliders') + YL.lang("Sidebar"), function() {
+                        [YL.util.getStrFa('sliders') + YL.lang("Sidebar"), function () {
                             YL.addSidebarBtn(objDeepCopy);
                             funcMsg()
                         }, !YL.static.changeable],
@@ -125,12 +125,12 @@ YL.render = function(data) {
                     ].concat(menuAddToTile)
                 ];
             },
-            contextMenuUninstall: function(appId) {
+            contextMenuUninstall: function (appId) {
                 var that = this;
                 return [
                     YL.util.getStrFa('trash') + YL.lang("Uninstall"),
-                    function(v) {
-                        YL.util.simpleConfirm(Yuri2.template(YL.lang("UninstallConfirm"), that.apps[appId].title), function() {
+                    function (v) {
+                        YL.util.simpleConfirm(Yuri2.template(YL.lang("UninstallConfirm"), that.apps[appId].title), function () {
                             if (YL.uninstall(appId)) {
                                 YL.util.simpleMsg(YL.lang("UninstallCompleted"));
                             }
@@ -138,36 +138,36 @@ YL.render = function(data) {
                     }, !YL.static.changeable
                 ]
             },
-            contextMenuOpen: function(obj) {
+            contextMenuOpen: function (obj) {
                 var that = this;
                 return [YL.util.getStrFa('play-circle') + YL.lang("Open"), [
                     [
                         YL.util.getStrFa('window-restore') + YL.lang("Normal"),
-                        function(v) {
+                        function (v) {
                             that.appOpen(obj.app, Yuri2.jsonMerge(obj, { openMode: 'normal' }), obj);
                         }
                     ],
                     [
                         YL.util.getStrFa('window-maximize') + YL.lang("Maximize"),
-                        function(v) {
+                        function (v) {
                             that.appOpen(obj.app, Yuri2.jsonMerge(obj, { openMode: 'max' }), obj);
                         }
                     ],
                     [
                         YL.util.getStrFa('window-minimize') + YL.lang("Minimize"),
-                        function(v) {
+                        function (v) {
                             that.appOpen(obj.app, Yuri2.jsonMerge(obj, { openMode: 'min' }), obj);
                         }
                     ],
                     [
                         YL.util.getStrFa('paper-plane') + YL.lang("Outer"),
-                        function(v) {
+                        function (v) {
                             that.appOpen(obj.app, Yuri2.jsonMerge(obj, { openMode: 'outer' }), obj);
                         }
                     ],
                 ]]
             },
-            onResize: function() {
+            onResize: function () {
                 var that = this;
 
                 //屏幕尺寸
@@ -218,7 +218,7 @@ YL.render = function(data) {
                     height: that.runtime.desktopSize.height,
                 });
             },
-            initRuntime: function(first) {
+            initRuntime: function (first) {
                 var that = this;
                 //窗体尺寸变更监听
                 var fnResize = that.onResize;
@@ -228,7 +228,7 @@ YL.render = function(data) {
 
                 //时钟
                 if (first) {
-                    setInterval(function() {
+                    setInterval(function () {
                         var myDate = new Date();
                         var year = myDate.getFullYear();
                         var month = myDate.getMonth() + 1;
@@ -245,7 +245,7 @@ YL.render = function(data) {
 
                 //即将渲染
                 if (first) {
-                    this.$nextTick(function() {
+                    this.$nextTick(function () {
                         //jq插件 滚动条
                         var box = [
                             '#yl .tiles-box',
@@ -261,12 +261,12 @@ YL.render = function(data) {
                                 grabcursorenabled: false,
                             });
                         }
-                        setInterval(function() {
+                        setInterval(function () {
                             for (var i = 0; i < box.length; i++) {
                                 var e = box[i];
                                 try {
                                     $(e).getNiceScroll().resize();
-                                } catch (e) {}
+                                } catch (e) { }
                             }
                         }, 500);
 
@@ -276,7 +276,7 @@ YL.render = function(data) {
 
                 //壁纸幻灯片服务
                 if (first) {
-                    setInterval(function() {
+                    setInterval(function () {
                         //wallpaperSlided:Date.now(), //记录最近一次切换壁纸的时刻
                         if (!that.configs.wallpaperSlide) return; //没开启则返回
                         var itv = that.configs.wallpaperSlideItv * 60 * 1000; //间隔（毫秒）
@@ -309,7 +309,7 @@ YL.render = function(data) {
                 if (Yuri2.isIE()) {
                     that.runtime.isIE = true;
                     if (YL.static.WarningPerformanceInIE) {
-                        setTimeout(function() {
+                        setTimeout(function () {
                             YL.msg(YL.lang("WarningPerformanceInIETitle"), YL.lang("WarningPerformanceInIEContent"))
                         }, 2000);
                     }
@@ -319,7 +319,7 @@ YL.render = function(data) {
                 var img = new Image();
                 var urlBg = this.configs.wallpaper;
                 img.src = urlBg;
-                img.onload = function() {
+                img.onload = function () {
                     that.runtime.wallpaper = urlBg;
                     if (that.configs.autoThemeColor) {
                         that.backgroundToThemeColor()
@@ -332,7 +332,7 @@ YL.render = function(data) {
                 //自动保存服务
                 if (first) {
                     var lastExport = '';
-                    setInterval(function() {
+                    setInterval(function () {
                         try {
                             var exportJson = JSON.stringify(YL.export());
                             if (exportJson !== lastExport) {
@@ -348,7 +348,7 @@ YL.render = function(data) {
 
                 //F5刷新激活子页
                 if (first) {
-                    var f5_check = function(e) {
+                    var f5_check = function (e) {
                         e = e || window.event;
                         if (e.ctrlKey && ((e.which || e.keyCode) === 116)) {
                             // 强制刷新，清除缓存
@@ -378,7 +378,7 @@ YL.render = function(data) {
 
                 //刷新子页的childSupport状态
                 if (first) {
-                    setInterval(function() {
+                    setInterval(function () {
                         var now = Date.now();
                         for (var i in that.wins) {
                             var win = that.wins[i];
@@ -388,21 +388,21 @@ YL.render = function(data) {
                 }
 
                 //自启动
-                var autoRun = function() {
+                var autoRun = function () {
                     var arrAutoRun = [];
                     for (var i in that.apps) {
                         if (that.apps[i].autoRun > 0) {
                             arrAutoRun.push(i);
                         }
                     }
-                    arrAutoRun.sort(function(a, b) {
+                    arrAutoRun.sort(function (a, b) {
                         return that.apps[b].autoRun - that.apps[a].autoRun;
                     });
-                    arrAutoRun.forEach(function(t) {
+                    arrAutoRun.forEach(function (t) {
                         //此处判断手机用户隐藏插件
                         var winId = that.appOpen(t, {});
                         if (that.apps[t].plugin && that.runtime.isSmallScreen) {
-                            that.$nextTick(function() {
+                            that.$nextTick(function () {
                                 that.winMinimize(winId);
                             });
                         }
@@ -415,7 +415,7 @@ YL.render = function(data) {
 
                 this.ready = true;
             },
-            setWithID: function(obj, val, prefix, ran) {
+            setWithID: function (obj, val, prefix, ran) {
                 //设置对象属性，返回合法id
                 do {
                     var id = ran === true ? prefix + Yuri2.randInt(100000000, 999999999) : prefix + YL.util.getID();
@@ -423,15 +423,15 @@ YL.render = function(data) {
                 this.$set(obj, id, val);
                 return id;
             },
-            emitWinEvent: function(id, event, data) {
+            emitWinEvent: function (id, event, data) {
                 //给所有子窗口发消息，id：消息源，event：事件名
                 var senList = [];
                 var wins = this.wins;
                 for (var idWin in wins) {
                     senList.push(idWin);
                 }
-                this.$nextTick(function() {
-                    senList.forEach(function(idWindow) {
+                this.$nextTick(function () {
+                    senList.forEach(function (idWindow) {
                         !window.frames[idWindow].postMessage || window.frames[idWindow].postMessage({
                             "type": "ylui-event",
                             event: event,
@@ -444,18 +444,18 @@ YL.render = function(data) {
                     });
                 });
             },
-            flash: function() {
+            flash: function () {
                 var that = this;
                 //图标闪烁。假的，是头发的特技
                 that.runtime.shortcutsShow = false;
-                setTimeout(function() {
+                setTimeout(function () {
                     that.runtime.shortcutsShow = true;
                 }, 200);
 
                 //刷新customTileRandomToken
                 that.runtime.customTileRandomToken = YL.util.randInt(1000, 9999);
             },
-            appOpen: function(id, options, source) {
+            appOpen: function (id, options, source) {
                 //id也可以是json（动态app）
                 var that = this;
                 if (!options) {
@@ -492,7 +492,7 @@ YL.render = function(data) {
                 this.runtime.winOpenCounter++; //计数
                 var dx = parseInt(this.runtime.winOpenCounter % 10) * this.runtime.clientSize.height * 0.01; //坐标偏移量
                 //该函数支持字符串转数字，其中x和y将被替换为屏幕的宽和高
-                var evalNum = function(str) {
+                var evalNum = function (str) {
                     var rel = 0;
                     if (isNaN(str)) {
                         try {
@@ -562,7 +562,7 @@ YL.render = function(data) {
                 if (win.urlRandomToken) win.url = YL.util.updateUrlRandomToken(win.url);
                 if (win.openMode === 'outer') {
                     //外部打开
-                    window.location=win.url;
+                    window.location = win.url;
                     return;
                 }
                 win.urlOrigin = win.url; //保存原始地址
@@ -582,13 +582,13 @@ YL.render = function(data) {
                 }
                 //记录激活的id
                 if (!win.min) this.runtime.winActive = winID;
-                that.$nextTick(function() {
+                that.$nextTick(function () {
                     //发送post消息,通知被分配的窗口id
-                    var itvPing = setInterval(function() {
+                    var itvPing = setInterval(function () {
                         if ($("#" + winID).length <= 0) {
                             clearInterval(itvPing);
                             return;
-                        }!window.frames[winID].postMessage || window.frames[winID].postMessage({
+                        } !window.frames[winID].postMessage || window.frames[winID].postMessage({
                             "type": "ylui-ping",
                             id: winID,
                             secrete: secrete,
@@ -598,7 +598,7 @@ YL.render = function(data) {
                     }, 500);
                     //监听iframe点击事件
                     var ifr = $("#" + win.idIframe)[0];
-                    YL.util.iframeOnClick.track(ifr, function() {
+                    YL.util.iframeOnClick.track(ifr, function () {
                         if (Object.getOwnPropertyNames(YL.util._iframe_click_lock_children).length === 0) {
                             that.winSetActive(winID); //激活窗口
                             ContextMenu._removeContextMenu(); //关闭右键菜单
@@ -612,10 +612,10 @@ YL.render = function(data) {
 
                     // 加载完毕关闭封面
                     var created = new Date().getTime();
-                    var closeInit = function() {
+                    var closeInit = function () {
                         var now = new Date().getTime();
                         var delay = now - created > 1000 ? 0 : 1000;
-                        setTimeout(function() {
+                        setTimeout(function () {
                             win.init = false;
                         }, delay);
                     };
@@ -634,16 +634,16 @@ YL.render = function(data) {
                 }
 
                 // 超时关闭封面
-                setTimeout(function() {
+                setTimeout(function () {
                     win.init = false;
                 }, 10000);
 
                 return winID;
             },
-            tileStyle: function(tile) {
+            tileStyle: function (tile) {
                 var that = this;
                 var sizePerBlock = that.runtime.tileSize;
-                var sizeRel = function(size) {
+                var sizeRel = function (size) {
                     return size * (sizePerBlock + 4) - 4;
                 };
                 var w = tile.w;
@@ -661,19 +661,19 @@ YL.render = function(data) {
                     // 'background-color':that.apps[tile.app].icon.bg,
                 }
             },
-            winIsMin: function(id) {
+            winIsMin: function (id) {
                 var win = this.wins[id];
                 return win.min;
             },
-            winShow: function(id) {
+            winShow: function (id) {
                 var win = this.wins[id];
                 win.min = false;
             },
-            winShowToggle: function(id) {
+            winShowToggle: function (id) {
                 var win = this.wins[id];
                 win.min = !win.min;
             },
-            winClose: function(id) {
+            winClose: function (id) {
                 var win = this.wins[id];
                 if (!win) {
                     return
@@ -683,7 +683,7 @@ YL.render = function(data) {
                 this.emitWinEvent(id, 'close', null);
                 this.findNewActive();
             },
-            winMaximize: function(id) {
+            winMaximize: function (id) {
                 //最大化
                 var win = this.wins[id];
                 if (!win.resizable) {
@@ -700,7 +700,7 @@ YL.render = function(data) {
                 win.oldStyle.size.height = win.style.size.height;
                 win.style.size.height = this.runtime.desktopSize.height - (win.addressBar ? 80 : 40);
             },
-            winRestore: function(id) {
+            winRestore: function (id) {
                 var win = this.wins[id];
                 win.state = 'normal';
                 win.style.position.y = win.oldStyle.position.y;
@@ -708,12 +708,12 @@ YL.render = function(data) {
                 win.style.size.width = win.oldStyle.size.width;
                 win.style.size.height = win.oldStyle.size.height;
             },
-            winMinimize: function(id) {
+            winMinimize: function (id) {
                 var win = this.wins[id];
                 win.min = true;
                 this.findNewActive();
             },
-            winSetCenter: function(id) {
+            winSetCenter: function (id) {
                 var that = this;
                 var win = that.wins[id];
                 that.winShow(id);
@@ -729,12 +729,12 @@ YL.render = function(data) {
                 win.style.position.y = h * 0.1 + 80;
                 win.style.position.x = w * 0.1;
             },
-            winTitleMouseDown: function(id, e) {
+            winTitleMouseDown: function (id, e) {
                 //忽略右键
                 if (e.which === 3) return;
                 var isMouse = !e.changedTouches; //是否是鼠标事件，false为触屏；
                 // var downTime=Date.now();
-                var fnGetPagePointFromEvent = function(event) {
+                var fnGetPagePointFromEvent = function (event) {
                     var p = {
                         x: 0,
                         y: 0,
@@ -759,7 +759,7 @@ YL.render = function(data) {
                 win.drag.x = point.x;
                 win.drag.y = point.y;
                 win.drag.mDownPosition = true;
-                var fnMouseUp = function(e) {
+                var fnMouseUp = function (e) {
                     if (!win.drag.mDownPosition) return;
                     win.drag.mDownPosition = false;
                     that.runtime.drag = false;
@@ -772,7 +772,7 @@ YL.render = function(data) {
                         $(document).unbind('touchend', fnMouseUp);
                     }
                 };
-                var fnMouseMove = function(e) {
+                var fnMouseMove = function (e) {
                     if (!win.drag.mDownPosition) return;
                     that.runtime.drag = true;
                     var p = fnGetPagePointFromEvent(e);
@@ -792,7 +792,7 @@ YL.render = function(data) {
                     $(document).on('touchmove', fnMouseMove);
                 }
             },
-            winTitleDblclick: function(id) {
+            winTitleDblclick: function (id) {
                 //双击最大化
                 var w = this.wins[id];
                 if (w.plugin) {
@@ -804,25 +804,53 @@ YL.render = function(data) {
                     this.winMaximize(id);
                 }
             },
-            winResizeMouseDown: function(id, e) {
+            winResizeMouseDown: function (id, e) {
                 //拖动逻辑
+                if (e.which === 3) return;
+                var isMouse = !e.changedTouches; //是否是鼠标事件，false为触屏；
+                // var downTime=Date.now();
+                var fnGetPagePointFromEvent = function (event) {
+                    var p = {
+                        x: 0,
+                        y: 0,
+                    };
+                    if (!e.changedTouches) {
+                        //是鼠标
+                        p.x = event.pageX;
+                        p.y = event.pageY;
+                    } else {
+                        //是触屏
+                        var touches = event.changedTouches ? event.changedTouches : event.originalEvent.changedTouches;
+                        p.x = touches[0].pageX;
+                        p.y = touches[0].pageY;
+                    }
+                    return p;
+                }; //该函数从触屏或鼠标点击获取pageX，pageY
+                var point = fnGetPagePointFromEvent(e);
                 var that = this;
                 var win = this.wins[id];
-                win.drag.x = e.pageX;
-                win.drag.y = e.pageY;
-                win.drag.mDownSize = true;
-                var fnMouseUp = function(e) {
+                win.drag.x = point.x;
+                win.drag.y = point.y;
+                win.drag.mDownPosition = true;
+                var fnMouseUp = function (e) {
                     if (!win.drag.mDownSize) return;
                     win.drag.mDownSize = false;
                     that.runtime.drag = false;
-                    $(document).unbind('mouseup', fnMouseUp);
-                    $(document).unbind('mousemove', fnMouseMove);
+                    if (isMouse) {
+                        $(document).unbind('mousemove', fnMouseMove);
+                        $(document).unbind('mouseup', fnMouseUp);
+                    } else {
+                        $(document).unbind('touchmove', fnMouseMove);
+                        $(document).unbind('touchend', fnMouseUp);
+                    }
+
                 };
-                var fnMouseMove = function(e) {
+                var fnMouseMove = function (e) {
                     if (!win.drag.mDownSize) return;
                     var minWidth = 200;
                     var minHeight = 84;
                     that.runtime.drag = true;
+                    var p = fnGetPagePointFromEvent(e);
                     var x = e.pageX;
                     var y = e.pageY;
                     win.style.size.width += (x - win.drag.x);
@@ -832,11 +860,16 @@ YL.render = function(data) {
                     win.drag.x = x;
                     win.drag.y = y;
                 };
-                $(document).mouseup(fnMouseUp);
-                $(document).mousemove(fnMouseMove);
+                if (isMouse) {
+                    $(document).mouseup(fnMouseUp);
+                    $(document).mousemove(fnMouseMove);
+                } else {
+                    $(document).on('touchend', fnMouseUp);
+                    $(document).on('touchmove', fnMouseMove);
+                }
 
             },
-            winSetActive: function(id) {
+            winSetActive: function (id) {
                 var now = Date.now();
                 if (now - this.runtime.winActiveTime < 200) {
                     return;
@@ -849,7 +882,7 @@ YL.render = function(data) {
                 this.drawer = null;
                 this.center.open = false;
             },
-            winStyle: function(id) {
+            winStyle: function (id) {
                 var win = this.wins[id];
                 return {
                     width: win.style.size.width + 'px',
@@ -861,7 +894,7 @@ YL.render = function(data) {
                     'z-index': win.style.index + (win.background ? -500 : 0),
                 }
             },
-            winInitIconStyle: function(id) {
+            winInitIconStyle: function (id) {
                 var win = this.wins[id];
                 var size = Math.min(win.style.size.width, win.style.size.height) / 4;
                 return {
@@ -870,7 +903,7 @@ YL.render = function(data) {
                     'width': size * 1.5 + 'px',
                 };
             },
-            winClass: function(id) {
+            winClass: function (id) {
                 var w = this.wins[id];
                 return {
                     active: id === this.runtime.winActive && !this.winIsMin(id),
@@ -878,7 +911,7 @@ YL.render = function(data) {
                     "addressBar-hidden": !w.addressBar,
                 }
             },
-            winTaskClick: function(id) {
+            winTaskClick: function (id) {
                 var win = this.wins[id];
                 if (this.winIsMin(id) || this.startMenu.open || this.drawer) {
                     this.winShow(id);
@@ -892,41 +925,41 @@ YL.render = function(data) {
                     }
                 }
             },
-            winRefresh: function(id) {
+            winRefresh: function (id) {
                 var win = this.wins[id];
                 var target = win.urlBar;
                 this.winJump(id, win.urlRandomToken ? YL.util.updateUrlRandomToken(target) : target);
             },
-            winHome: function(id) {
+            winHome: function (id) {
                 var win = this.wins[id];
                 var target = win.urlOrigin;
                 this.winJump(id, win.urlRandomToken ? YL.util.updateUrlRandomToken(target) : target);
             },
-            winJump: function(id, url) {
+            winJump: function (id, url) {
                 var win = this.wins[id];
                 win.url = win.urlBar = 'about:blank';
-                setTimeout(function() {
+                setTimeout(function () {
                     win.url = win.urlBar = url;
                 }, 200);
             },
-            winContextMenu: function(id, e) {
+            winContextMenu: function (id, e) {
                 var that = this;
                 var win = this.wins[id];
                 var menu = [
-                    [YL.util.getStrFa("refresh") + YL.lang("Refresh"), function() {
+                    [YL.util.getStrFa("refresh") + YL.lang("Refresh"), function () {
                         that.winRefresh(id);
                     }],
                 ];
                 if (!win.addressBar) {
-                    menu.push([YL.util.getStrFa("location-arrow") + YL.lang("DisplayAddressBar"), function() {
+                    menu.push([YL.util.getStrFa("location-arrow") + YL.lang("DisplayAddressBar"), function () {
                         win.addressBar = true;
                     }]);
                 } else {
-                    menu.push([YL.util.getStrFa("location-arrow") + YL.lang("HideAddressBar"), function() {
+                    menu.push([YL.util.getStrFa("location-arrow") + YL.lang("HideAddressBar"), function () {
                         win.addressBar = false;
                     }]);
                 }
-                menu.push([YL.util.getStrFa("magic") + YL.lang("CollectAsApplication"), function() {
+                menu.push([YL.util.getStrFa("magic") + YL.lang("CollectAsApplication"), function () {
                     layer.prompt({
                         title: YL.lang("AttentionEnterAppName"),
                         formType: 0,
@@ -934,7 +967,7 @@ YL.render = function(data) {
                         maxlength: 32,
                         skin: 'yl',
                         zIndex: 19930012,
-                    }, function(input, index) {
+                    }, function (input, index) {
                         layer.close(index);
                         var app = YL.util.getAppDataTemplate();
                         app.url = YL.util.removeUrlRandomToken(win.url);
@@ -951,23 +984,23 @@ YL.render = function(data) {
                 menu.push('|');
                 var menuWin = [];
                 menuWin.push(YL.util.getStrFa("arrows") + Yuri2.template('${0}px * ${1}px', parseInt(win.style.size.width), parseInt(win.style.size.height)));
-                menuWin.push([YL.util.getStrFa("window-restore") + YL.lang("CentreAdjustment"), function() {
+                menuWin.push([YL.util.getStrFa("window-restore") + YL.lang("CentreAdjustment"), function () {
                     that.winSetCenter(id);
                     that.winSetActive(id);
                 }]);
                 if (that.winIsMin(id)) {
-                    menuWin.push([YL.util.getStrFa("clone") + YL.lang("DisplayWindow"), function() {
+                    menuWin.push([YL.util.getStrFa("clone") + YL.lang("DisplayWindow"), function () {
                         that.winShow(id);
                     }]);
                 } else {
-                    menuWin.push([YL.util.getStrFa("window-minimize") + YL.lang("Minimize"), function() {
+                    menuWin.push([YL.util.getStrFa("window-minimize") + YL.lang("Minimize"), function () {
                         that.winMinimize(id);
                     }]);
                 }
                 if (!win.plugin && win.state === 'normal' && win.resizable) {
                     menuWin.push([
                         YL.util.getStrFa("window-maximize") + YL.lang("Maximize"),
-                        function() {
+                        function () {
                             that.winShow(id);
                             that.winMaximize(id);
                         }
@@ -976,37 +1009,37 @@ YL.render = function(data) {
                 if (!win.plugin && win.state === 'max') {
                     menuWin.push([
                         YL.util.getStrFa("window-restore") + YL.lang("Restore"),
-                        function() {
+                        function () {
                             that.winRestore(id)
                         }
                     ])
                 }
                 menuWin.push('|');
                 if (win.style.position.left) {
-                    menuWin.push([YL.util.getStrFa("angle-double-right") + YL.lang("AlignRight") + Yuri2.template(' (${0}px)', parseInt(win.style.position.x)), function() {
+                    menuWin.push([YL.util.getStrFa("angle-double-right") + YL.lang("AlignRight") + Yuri2.template(' (${0}px)', parseInt(win.style.position.x)), function () {
                         win.style.position.left = !win.style.position.left;
                     }]);
                 } else {
-                    menuWin.push([YL.util.getStrFa("angle-double-left") + YL.lang("AlignLeft") + Yuri2.template(' (${0}px)', parseInt(win.style.position.x)), function() {
+                    menuWin.push([YL.util.getStrFa("angle-double-left") + YL.lang("AlignLeft") + Yuri2.template(' (${0}px)', parseInt(win.style.position.x)), function () {
                         win.style.position.left = !win.style.position.left;
                     }]);
                 }
                 if (win.style.position.top) {
-                    menuWin.push([YL.util.getStrFa("angle-double-down") + YL.lang("AlignBottom") + Yuri2.template(' (${0}px)', parseInt(win.style.position.y)), function() {
+                    menuWin.push([YL.util.getStrFa("angle-double-down") + YL.lang("AlignBottom") + Yuri2.template(' (${0}px)', parseInt(win.style.position.y)), function () {
                         win.style.position.top = !win.style.position.top;
                     }]);
                 } else {
-                    menuWin.push([YL.util.getStrFa("angle-double-up") + YL.lang("AlignTop") + Yuri2.template(' (${0}px)', parseInt(win.style.position.y)), function() {
+                    menuWin.push([YL.util.getStrFa("angle-double-up") + YL.lang("AlignTop") + Yuri2.template(' (${0}px)', parseInt(win.style.position.y)), function () {
                         win.style.position.top = !win.style.position.top;
                     }]);
                 }
                 menu.push([YL.util.getStrFa("windows") + YL.lang("WindowPosition"), menuWin]);
-                menu.push([YL.util.getStrFa("paper-plane") + YL.lang("OpenOuter"), function() {
+                menu.push([YL.util.getStrFa("paper-plane") + YL.lang("OpenOuter"), function () {
                     window.open(win.url);
                 }]);
                 //记住位置大小
                 if (win.source) {
-                    menu.push([YL.util.getStrFa("crop") + YL.lang('RememberSizeAndPosition'), function() {
+                    menu.push([YL.util.getStrFa("crop") + YL.lang('RememberSizeAndPosition'), function () {
                         win.source.style = {};
                         win.source.style.position = {};
                         win.source.style.size = {};
@@ -1020,7 +1053,7 @@ YL.render = function(data) {
                         YL.util.simpleMsg(YL.lang("Recorded"));
                     }, !YL.static.changeable]);
                     if (win.source.style) {
-                        menu.push([YL.util.getStrFa("crop") + YL.lang("ResetSizeAndPosition"), function() {
+                        menu.push([YL.util.getStrFa("crop") + YL.lang("ResetSizeAndPosition"), function () {
                             delete win.source.style;
                         }, !YL.static.changeable]);
                     }
@@ -1029,11 +1062,11 @@ YL.render = function(data) {
                     //可以置底作为背景
                     menu.push('|');
                     if (win.background) {
-                        menu.push([YL.util.getStrFa("sort-up") + YL.lang("PutForeground"), function() {
+                        menu.push([YL.util.getStrFa("sort-up") + YL.lang("PutForeground"), function () {
                             win.background = false;
                         }]);
                     } else {
-                        menu.push([YL.util.getStrFa("sort-down") + YL.lang("PutBackground"), function() {
+                        menu.push([YL.util.getStrFa("sort-down") + YL.lang("PutBackground"), function () {
                             win.background = true;
                         }]);
                     }
@@ -1041,13 +1074,13 @@ YL.render = function(data) {
                 menu.push('|');
                 menu.push([
                     YL.util.getStrFa("close") + YL.lang("Close"),
-                    function() {
+                    function () {
                         that.winClose(id)
                     }
                 ]);
                 ContextMenu.render(e, menu, this, "light");
             },
-            findNewActive: function() {
+            findNewActive: function () {
                 var id = null;
                 var maxIndex = 0;
                 for (var i in this.wins) {
@@ -1059,7 +1092,7 @@ YL.render = function(data) {
                 }
                 this.runtime.winActive = id;
             },
-            winHideAll: function() {
+            winHideAll: function () {
                 for (var i in this.wins) {
                     var win = this.wins[i];
                     if (win.plugin) {
@@ -1068,7 +1101,7 @@ YL.render = function(data) {
                     win.min = true;
                 }
             },
-            winShowAll: function() {
+            winShowAll: function () {
                 for (var i in this.wins) {
                     var win = this.wins[i];
                     if (win.plugin) {
@@ -1077,7 +1110,7 @@ YL.render = function(data) {
                     win.min = false;
                 }
             },
-            winCloseAll: function() {
+            winCloseAll: function () {
                 for (var i in this.wins) {
                     var win = this.wins[i];
                     if (win.plugin) {
@@ -1087,7 +1120,7 @@ YL.render = function(data) {
                 }
                 // this.runtime.winOpened=0; //计数
             },
-            menuItemClose: function(father) {
+            menuItemClose: function (father) {
                 var menu = father ? father : this.startMenu.menu;
                 for (var i in menu) {
                     var item = menu[i];
@@ -1097,15 +1130,15 @@ YL.render = function(data) {
                     }
                 }
             },
-            menuClose: function() {
+            menuClose: function () {
                 this.startMenu.open = false;
                 this.menuItemClose();
             },
-            showDesktop: function() {
+            showDesktop: function () {
                 this.winHideAll();
                 this.hideOpens();
             },
-            badgeText: function(content) {
+            badgeText: function (content) {
                 //处理badge的提示内容
                 if (isNaN(content)) {
                     return content;
@@ -1113,7 +1146,7 @@ YL.render = function(data) {
                     return content > 99 ? '99+' : parseInt(content);
                 }
             },
-            drawerStyle: function() {
+            drawerStyle: function () {
                 var top = 0,
                     left = 0;
 
@@ -1122,7 +1155,7 @@ YL.render = function(data) {
                     'left': left + 'px',
                 }
             },
-            hideOpens: function() {
+            hideOpens: function () {
                 //批量关闭一些菜单，div
                 this.drawer = null;
                 this.menuClose();
@@ -1130,70 +1163,70 @@ YL.render = function(data) {
                 this.runtime.pluginIconsOpen = false;
                 this.runtime.CalendarOpen = false;
             },
-            desktopMouseDown: function(e) {
+            desktopMouseDown: function (e) {
                 this.hideOpens();
                 !e || this.emitWinEvent(0, 'desktopMouseDown', {
                     x: e.x,
                     y: e.y,
                 });
             },
-            desktopMouseUp: function(e) {
+            desktopMouseUp: function (e) {
                 this.hideOpens();
                 !e || this.emitWinEvent(0, 'desktopMouseUp', {
                     x: e.x,
                     y: e.y,
                 });
             },
-            desktopClick: function(e) {
+            desktopClick: function (e) {
                 this.hideOpens();
                 !e || this.emitWinEvent(0, 'desktopClick', {
                     x: e.x,
                     y: e.y,
                 });
             },
-            desktopContextMenu: function(e) {
+            desktopContextMenu: function (e) {
                 var that = this;
                 that.hideOpens();
                 var menu = [
-                    [YL.util.getStrFa("refresh") + YL.lang("Refresh"), function() {
+                    [YL.util.getStrFa("refresh") + YL.lang("Refresh"), function () {
                         that.flash()
                     }],
-                    '|', [YL.util.getStrFa('desktop') + YL.lang("DisplayDesktop"), function() {
+                    '|', [YL.util.getStrFa('desktop') + YL.lang("DisplayDesktop"), function () {
                         that.showDesktop()
                     }],
                     [YL.util.getStrFa('credit-card') + YL.lang("Personalization"), [
-                        [YL.util.getStrFa('paint-brush') + YL.lang("ThemeColor"), function() {
+                        [YL.util.getStrFa('paint-brush') + YL.lang("ThemeColor"), function () {
                             YL.open('yl-system', { data: { nav: 'colors' } })
                         }, !YL.static.changeable],
-                        [YL.util.getStrFa('picture-o') + YL.lang("Wallpaper"), function() {
+                        [YL.util.getStrFa('picture-o') + YL.lang("Wallpaper"), function () {
                             YL.open('yl-system', { data: { nav: 'wallpaper' } })
                         }, !YL.static.changeable],
                     ]],
-                    [YL.util.getStrFa('cog') + YL.lang("SystemOptions"), function() {
+                    [YL.util.getStrFa('cog') + YL.lang("SystemOptions"), function () {
                         YL.open('yl-system')
                     }, !YL.static.changeable],
-                    '|', [YL.util.getStrFa('object-group') + YL.lang("FullScreen"), function() {
+                    '|', [YL.util.getStrFa('object-group') + YL.lang("FullScreen"), function () {
                         YL.util.enableFullScreen();
                     }],
-                    [YL.util.getStrFa('object-ungroup') + YL.lang("NormalScreen"), function() {
+                    [YL.util.getStrFa('object-ungroup') + YL.lang("NormalScreen"), function () {
                         YL.util.disableFullScreen();
                     }],
-                    [YL.util.getStrFa('circle-o-notch') + YL.lang("Reload"), function() {
+                    [YL.util.getStrFa('circle-o-notch') + YL.lang("Reload"), function () {
                         YL.f5();
                     }],
-                    '|', [YL.util.getStrFa('info-circle') + YL.lang("AboutUs"), function() {
+                    '|', [YL.util.getStrFa('info-circle') + YL.lang("AboutUs"), function () {
                         YL.aboutUs()
                     }],
                 ];
                 ContextMenu.render(e, menu, this, "light");
             },
-            desktopMouseMove: function(e) {
+            desktopMouseMove: function (e) {
                 this.emitWinEvent(0, 'desktopMouseMove', {
                     x: e.x,
                     y: e.y,
                 });
             },
-            shortcutOpen: function(s, id) {
+            shortcutOpen: function (s, id) {
                 var now = Date.now();
                 if (!s || s.drag.moved > 20 || now - this.runtime.shortcutOpenedAt < 500) {
                     //忽略拖动产生的click和touch+click导致的短时间多次打开
@@ -1209,12 +1242,12 @@ YL.render = function(data) {
                 this.runtime.shortcutOpenedAt = Date.now();
                 YL.debug(YL.lang("OpenIcons") + ':' + s.title)
             },
-            shortcutGrid: function(id) {
+            shortcutGrid: function (id) {
                 var x = parseInt(id / this.runtime.shortcutsGrid.y);
                 var y = parseInt(id % this.runtime.shortcutsGrid.y);
                 return { x: x, y: y }
             },
-            shortcutPosition: function(id, pid) {
+            shortcutPosition: function (id, pid) {
                 var g = this.shortcutGrid(id);
                 var s = pid === null ? this.shortcuts[id] : this.shortcuts[pid].children[id];
                 return {
@@ -1222,14 +1255,14 @@ YL.render = function(data) {
                     y: g.y * this.runtime.shortcutHeight + s.drag.top
                 }
             },
-            shortcutStyle: function(id, pid) {
+            shortcutStyle: function (id, pid) {
                 var p = this.shortcutPosition(id, pid);
                 return {
                     left: p.x + 'px',
                     top: p.y + 'px',
                 }
             },
-            shortcutClass: function(id, s, fromDrawer) {
+            shortcutClass: function (id, s, fromDrawer) {
                 return {
                     move: s.drag.mDown,
                     insert: this.runtime.shortcutInsert === id && !fromDrawer,
@@ -1237,11 +1270,11 @@ YL.render = function(data) {
                     cut: this.shortcutCutOutFromDrawer(s),
                 };
             },
-            shortcutMouseDown: function(id, pid, e) {
+            shortcutMouseDown: function (id, pid, e) {
                 if (e.which && e.which !== 1) return; //只响应左键
                 var isMouse = !e.changedTouches; //是否是鼠标事件，false为触屏；
                 var downTime = Date.now();
-                var fnGetPagePointFromEvent = function(event) {
+                var fnGetPagePointFromEvent = function (event) {
                     var p = {
                         x: 0,
                         y: 0,
@@ -1266,12 +1299,12 @@ YL.render = function(data) {
                 s.drag.x = point.x;
                 s.drag.y = point.y;
                 s.drag.moved = 0;
-                var fnDragOn = function(index) {
+                var fnDragOn = function (index) {
                     var p = that.shortcutPosition(index, null); //得到图标目前的位置p
                     var tid, tby, ton = false,
                         tinsert = false,
                         tover = false;
-                    that.shortcuts.forEach(function(t, i) {
+                    that.shortcuts.forEach(function (t, i) {
                         if (i === index) return; //忽略遍历自身
                         var pt = that.shortcutPosition(i, null);
                         var bx = pt.x - p.x;
@@ -1294,7 +1327,7 @@ YL.render = function(data) {
                         over: tover,
                     };
                 };
-                var fnMouseUp = function(e) {
+                var fnMouseUp = function (e) {
                     if (!s.drag.mDown) return;
                     s.drag.mDown = false;
                     if (!isFromDrawer) {
@@ -1343,7 +1376,7 @@ YL.render = function(data) {
                                 that.shortcuts.splice(id, 1)
                             } else if (s.children && sOn.children) {
                                 //4.组vs组 合并组
-                                s.children.forEach(function(t) {
+                                s.children.forEach(function (t) {
                                     sOn.children.push(t);
                                 });
                                 that.shortcuts.splice(id, 1)
@@ -1375,7 +1408,7 @@ YL.render = function(data) {
                     }
 
                 };
-                var fnMouseMove = function(e) {
+                var fnMouseMove = function (e) {
                     if (!s.drag.mDown) return;
                     var p = fnGetPagePointFromEvent(e);
                     var x = p.x;
@@ -1407,17 +1440,17 @@ YL.render = function(data) {
                     $(document).on('touchmove', fnMouseMove);
                 }
             },
-            shortcutCutOutFromDrawer: function(s) {
+            shortcutCutOutFromDrawer: function (s) {
                 return Math.abs(s.drag.left) + Math.abs(s.drag.top) > 1.5 * this.runtime.shortcutWidth;
             },
-            shortcutContextMenu: function(id, pid, e, isDrawer) {
+            shortcutContextMenu: function (id, pid, e, isDrawer) {
                 var that = this;
                 var s = pid === null ? that.shortcuts[id] : that.shortcuts[pid].children[id];
                 var menu = [];
                 if (s.children) {
                     menu.push([
                         YL.util.getStrFa('play-circle') + YL.lang("Open"),
-                        function(v) {
+                        function (v) {
                             that.shortcutOpen(s, id);
                         }
                     ]);
@@ -1428,14 +1461,14 @@ YL.render = function(data) {
                 if (s.children) {
                     menu.push([
                         YL.util.getStrFa('tags') + YL.lang("Rename"),
-                        function() {
+                        function () {
                             that.shortSetting = s;
                         }, !YL.static.changeable
                     ]);
                     menu.push([
                         YL.util.getStrFa('sitemap') + YL.lang("UnGroup"),
-                        function(v) {
-                            s.children.forEach(function(t) {
+                        function (v) {
+                            s.children.forEach(function (t) {
                                 that.shortcuts.splice(id + 1, 0, t);
                             });
                             that.shortcuts.splice(id, 1);
@@ -1452,21 +1485,21 @@ YL.render = function(data) {
                     menu.push(that.contextMenuAddTo(objCopy));
                     menu.push([
                         YL.util.getStrFa('tags') + YL.lang("Rename") + "/" + YL.lang("Options"),
-                        function(v) {
+                        function (v) {
                             that.shortSetting = s;
                         }, !YL.static.changeable
                     ]);
                 }
                 if (s.app && that.apps[s.app].badge) {
-                    menu.push([YL.util.getStrFa('map-pin') + YL.lang("ClearSuperscript"), function() {
+                    menu.push([YL.util.getStrFa('map-pin') + YL.lang("ClearSuperscript"), function () {
                         that.apps[s.app].badge = 0
                     }, !YL.static.changeable])
                 }
                 menu.push('|');
                 menu.push([
                     YL.util.getStrFa('remove') + YL.lang("Delete"),
-                    function(v) {
-                        YL.util.simpleConfirm(Yuri2.template(YL.lang("DeleteIconConfirm"), s.title), function() {
+                    function (v) {
+                        YL.util.simpleConfirm(Yuri2.template(YL.lang("DeleteIconConfirm"), s.title), function () {
                             if (isDrawer) {
                                 that.shortcuts[pid].children.splice(id, 1);
                             } else {
@@ -1480,7 +1513,7 @@ YL.render = function(data) {
                 }
                 ContextMenu.render(e, menu, this, "light");
             },
-            shortcutGetDrawerBadge: function(id) {
+            shortcutGetDrawerBadge: function (id) {
                 var g = this.shortcuts[id];
                 var d = g.children;
                 var count = 0;
@@ -1494,16 +1527,16 @@ YL.render = function(data) {
                 }
                 return count;
             },
-            menuItemClick: function(item) {
+            menuItemClick: function (item) {
                 this.appOpen(item.app, item, item)
             },
-            msgClose: function(id) {
+            msgClose: function (id) {
                 var that = this;
                 this.center.msg[id].hide = true;
                 that.$delete(that.center.msg, id);
                 that.center.msgNum--;
             },
-            btnCenterClick: function() {
+            btnCenterClick: function () {
                 if (this.center.open) {
                     this.hideOpens();
                 } else {
@@ -1512,31 +1545,31 @@ YL.render = function(data) {
                     this.center.unread = 0;
                 }
             },
-            btnCenterClear: function() {
+            btnCenterClear: function () {
                 var that = this;
                 for (var i in that.center.msg) {
                     var m = that.center.msg[i];
                     m.hide = true;
                 }
                 that.$set(that.center, 'msg', {});
-                setTimeout(function() {
+                setTimeout(function () {
                     that.center.unread = 0;
                     that.center.msgNum = 0;
                 }, 500);
-                setTimeout(function() {
+                setTimeout(function () {
                     that.center.open = false;
                 }, 1500);
             },
-            barContextMenu: function(e) {
+            barContextMenu: function (e) {
                 var that = this;
                 var menu = [
-                    [YL.util.getStrFa('window-minimize') + YL.lang("HideAll"), function() {
+                    [YL.util.getStrFa('window-minimize') + YL.lang("HideAll"), function () {
                         that.winHideAll()
                     }],
-                    [YL.util.getStrFa('clone') + YL.lang("DisplayAll"), function() {
+                    [YL.util.getStrFa('clone') + YL.lang("DisplayAll"), function () {
                         that.winShowAll()
                     }],
-                    [YL.util.getStrFa('window-close') + YL.lang("CloseAll"), function() {
+                    [YL.util.getStrFa('window-close') + YL.lang("CloseAll"), function () {
                         that.winCloseAll()
                     }],
                     "|"
@@ -1544,21 +1577,21 @@ YL.render = function(data) {
                 if (that.configs.topTaskBar) {
                     menu.push([
                         YL.util.getStrFa('arrow-down') + YL.lang("BottomTaskBar"),
-                        function() {
+                        function () {
                             that.configs.topTaskBar = false;
                         }
                     ], !YL.static.changeable)
                 } else {
                     menu.push([
                         YL.util.getStrFa('arrow-up') + YL.lang("TopTaskBar"),
-                        function() {
+                        function () {
                             that.configs.topTaskBar = true;
                         }
                     ])
                 }
                 ContextMenu.render(e, menu, this);
             },
-            tileContextMenu: function(groupIndex, tileIndex, e) {
+            tileContextMenu: function (groupIndex, tileIndex, e) {
                 var that = this;
                 var tile = that.tiles[groupIndex].data[tileIndex];
                 var objCopy = Yuri2.jsonDeepCopy({
@@ -1572,19 +1605,19 @@ YL.render = function(data) {
                     that.contextMenuOpen(tile),
                     that.contextMenuAddTo(objCopy), [
                         YL.util.getStrFa('tags') + YL.lang("Rename") + "/" + YL.lang("Options"),
-                        function(v) {
+                        function (v) {
                             that.shortSetting = tile;
                         }, !YL.static.changeable
                     ],
-                    "|", [YL.util.getStrFa('braille') + YL.lang("Small") + YL.lang("Size"), function() {
+                    "|", [YL.util.getStrFa('braille') + YL.lang("Small") + YL.lang("Size"), function () {
                         tile.w = 1;
                         tile.h = 1;
                     }, !YL.static.changeable],
-                    [YL.util.getStrFa('braille') + YL.lang("Middle") + YL.lang("Size"), function() {
+                    [YL.util.getStrFa('braille') + YL.lang("Middle") + YL.lang("Size"), function () {
                         tile.w = 2;
                         tile.h = 2;
                     }, !YL.static.changeable],
-                    [YL.util.getStrFa('braille') + YL.lang("Big") + YL.lang("Size"), function() {
+                    [YL.util.getStrFa('braille') + YL.lang("Big") + YL.lang("Size"), function () {
                         tile.w = 4;
                         tile.h = 4;
                     }, !YL.static.changeable],
@@ -1593,9 +1626,9 @@ YL.render = function(data) {
                 //处理磁贴转移到其他组的逻辑
                 if (that.tiles.length > 1) {
                     var moveMenu = [];
-                    that.tiles.forEach(function(t, n) {
+                    that.tiles.forEach(function (t, n) {
                         if (n === groupIndex) return;
-                        moveMenu.push([that.tiles[n].title, function() {
+                        moveMenu.push([that.tiles[n].title, function () {
                             that.tiles[groupIndex].data.splice(tileIndex, 1);
                             var movedTile = Yuri2.jsonDeepCopy(tile);
                             movedTile.y = 999;
@@ -1608,18 +1641,18 @@ YL.render = function(data) {
                 }
 
                 menu.push("|");
-                menu.push([YL.util.getStrFa('remove') + YL.lang("Delete"), function() {
-                    YL.util.simpleConfirm(Yuri2.template(YL.lang("DeleteTileConfirm"), tile.title), function() {
+                menu.push([YL.util.getStrFa('remove') + YL.lang("Delete"), function () {
+                    YL.util.simpleConfirm(Yuri2.template(YL.lang("DeleteTileConfirm"), tile.title), function () {
                         that.tiles[groupIndex].data.splice(tileIndex, 1);
                     });
                 }, !YL.static.changeable]);
                 menu.push(that.contextMenuUninstall(tile.app));
                 ContextMenu.render(e, menu, this);
             },
-            tileSrcCustom: function(app) {
+            tileSrcCustom: function (app) {
                 return app.urlRandomToken ? YL.util.updateUrlRandomToken(app.customTile, '', this.runtime.customTileRandomToken) : app.customTile;
             },
-            menuContextMenu: function(data) {
+            menuContextMenu: function (data) {
                 var that = this;
                 var item = data.item;
                 var objCopy = Yuri2.jsonDeepCopy({
@@ -1637,7 +1670,7 @@ YL.render = function(data) {
                         that.contextMenuOpen(item),
                         that.contextMenuAddTo(objCopy), [
                             YL.util.getStrFa('tags') + YL.lang("Rename") + "/" + YL.lang("Options"),
-                            function(v) {
+                            function (v) {
                                 that.shortSetting = item;
                             }, !YL.static.changeable
                         ],
@@ -1645,7 +1678,7 @@ YL.render = function(data) {
                 } else {
                     menu.push([
                         YL.util.getStrFa('object-group') + YL.lang("NewSubgroup"),
-                        function() {
+                        function () {
                             var itemNew = {
                                 title: YL.lang("Group"),
                                 children: {},
@@ -1656,7 +1689,7 @@ YL.render = function(data) {
                     ]);
                     menu.push([
                         YL.util.getStrFa('tags') + YL.lang("Rename"),
-                        function() {
+                        function () {
                             that.shortSetting = item;
                         }, !YL.static.changeable
                     ]);
@@ -1664,7 +1697,7 @@ YL.render = function(data) {
                 menu.push('|');
                 menu.push([
                     YL.util.getStrFa('cut') + YL.lang("CutAndExchange"),
-                    function() {
+                    function () {
                         that.runtime.menuItemCut = itemId;
                         YL.util.simpleMsg(item.title + " " + YL.lang("Recorded"));
                     }, !YL.static.changeable
@@ -1672,9 +1705,9 @@ YL.render = function(data) {
                 if (that.runtime.menuItemCut) {
                     menu.push([
                         YL.util.getStrFa('paste') + YL.lang("Paste"),
-                        function() {
+                        function () {
                             var cut = that.runtime.menuItemCut;
-                            that.menuItemAction(cut, function(child, father) {
+                            that.menuItemAction(cut, function (child, father) {
                                 if (father.children)
                                     that.$delete(father.children, cut);
                                 else
@@ -1686,16 +1719,16 @@ YL.render = function(data) {
                     ]);
                     menu.push([
                         YL.util.getStrFa('exchange') + YL.lang("Exchange"),
-                        function() {
+                        function () {
                             var idA = itemId,
                                 childA, fatherA;
                             var idB = that.runtime.menuItemCut,
                                 childB, fatherB;
-                            that.menuItemAction(idA, function(child, father) {
+                            that.menuItemAction(idA, function (child, father) {
                                 childA = child;
                                 fatherA = father;
                             });
-                            that.menuItemAction(idB, function(child, father) {
+                            that.menuItemAction(idB, function (child, father) {
                                 childB = child;
                                 fatherB = father;
                             });
@@ -1712,10 +1745,10 @@ YL.render = function(data) {
                 menu.push("|");
                 menu.push([
                     YL.util.getStrFa('remove') + YL.lang("Delete"),
-                    function() {
+                    function () {
                         //递归删除依赖菜单
-                        YL.util.simpleConfirm(Yuri2.template(YL.lang("DeleteMenuConfirm"), item.title), function() {
-                            that.menuItemAction(itemId, function(child, father) {
+                        YL.util.simpleConfirm(Yuri2.template(YL.lang("DeleteMenuConfirm"), item.title), function () {
+                            that.menuItemAction(itemId, function (child, father) {
                                 if (father.children)
                                     that.$delete(father.children, itemId);
                                 else
@@ -1729,12 +1762,12 @@ YL.render = function(data) {
                 }
                 ContextMenu.render(data.event, menu, this);
             },
-            menuMainContextMenu: function(e) {
+            menuMainContextMenu: function (e) {
                 var that = this;
                 var menu = [
                     [
                         YL.util.getStrFa('object-group') + YL.lang("NewSubgroup"),
-                        function() {
+                        function () {
                             var item = {
                                 title: YL.lang("Group"),
                                 children: {},
@@ -1745,9 +1778,9 @@ YL.render = function(data) {
                     ],
                     [
                         YL.util.getStrFa('paste') + YL.lang("Paste"),
-                        function() {
+                        function () {
                             var cut = that.runtime.menuItemCut;
-                            that.menuItemAction(cut, function(child, father) {
+                            that.menuItemAction(cut, function (child, father) {
                                 if (father.children)
                                     that.$delete(father.children, cut);
                                 else
@@ -1760,7 +1793,7 @@ YL.render = function(data) {
                 ];
                 ContextMenu.render(e, menu, this);
             },
-            menuItemAction: function(id, cb, father) {
+            menuItemAction: function (id, cb, father) {
                 //递归寻找，callback(child,father)
                 var that = this;
                 var menu = father ? father.children : that.startMenu.menu;
@@ -1773,31 +1806,31 @@ YL.render = function(data) {
                     }
                 }
             },
-            tilesBoxContextMenu: function(e) {
+            tilesBoxContextMenu: function (e) {
                 var that = this;
                 var menu = [
-                    [YL.util.getStrFa('object-group') + YL.lang("NewSubgroup"), function() {
+                    [YL.util.getStrFa('object-group') + YL.lang("NewSubgroup"), function () {
                         YL.addTileGroup();
                     }], !YL.static.changeable
                 ];
                 ContextMenu.render(e, menu, this);
             },
-            backgroundToThemeColor: function() {
+            backgroundToThemeColor: function () {
                 var that = this;
-                YL.util.imgUrlToThemeColor(this.runtime.wallpaper, function(color) {
+                YL.util.imgUrlToThemeColor(this.runtime.wallpaper, function (color) {
                     that.configs.themeColor = color;
                 }, 0.6)
             },
-            backgroundUpdateScale: function() {
+            backgroundUpdateScale: function () {
                 var that = this;
                 var url = this.configs.wallpaper;
-                YL.util.imgUrlToSize(url, function(size) {
+                YL.util.imgUrlToSize(url, function (size) {
                     var width = size.width || 1;
                     var height = size.height || 1;
                     that.runtime.wallpaperScale = width / height;
                 })
             },
-            sidebarBtnContextMenu: function(i, e) {
+            sidebarBtnContextMenu: function (i, e) {
                 var that = this;
                 var btn = that.startMenu.sidebar.btns[i];
                 var objCopy = Yuri2.jsonDeepCopy({
@@ -1810,26 +1843,26 @@ YL.render = function(data) {
                 var menu = [
                     that.contextMenuOpen(btn),
                     that.contextMenuAddTo(objCopy), [YL.util.getStrFa('tags') + YL.lang("Rename") + "/" + YL.lang("Options"),
-                        function(v) {
-                            that.shortSetting = btn;
-                        }, !YL.static.changeable
+                    function (v) {
+                        that.shortSetting = btn;
+                    }, !YL.static.changeable
                     ],
                     "|", [
                         YL.util.getStrFa('arrow-up') + YL.lang("ShiftUp"),
-                        function() {
+                        function () {
                             Yuri2.arrUpRecord(that.startMenu.sidebar.btns, i);
                         }, !YL.static.changeable
                     ],
                     [
                         YL.util.getStrFa('arrow-down') + YL.lang("ShiftDown"),
-                        function() {
+                        function () {
                             Yuri2.arrDownRecord(that.startMenu.sidebar.btns, i);
                         }, !YL.static.changeable
                     ],
                     '|', [
                         YL.util.getStrFa('remove') + YL.lang("Delete"),
-                        function() {
-                            YL.util.simpleConfirm(Yuri2.template(YL.lang("DeleteBtnConfirm"), btn.title), function() {
+                        function () {
+                            YL.util.simpleConfirm(Yuri2.template(YL.lang("DeleteBtnConfirm"), btn.title), function () {
                                 that.startMenu.sidebar.btns.splice(i, 1);
                             });
                         }, !YL.static.changeable
@@ -1838,35 +1871,35 @@ YL.render = function(data) {
                 ];
                 ContextMenu.render(e, menu, this);
             },
-            tilesTitleContextMenu: function(groupIndex, e) {
+            tilesTitleContextMenu: function (groupIndex, e) {
                 var that = this;
                 var group = that.tiles[groupIndex];
                 var menu = [
-                    [YL.util.getStrFa('tags') + YL.lang("Rename"), function() {
+                    [YL.util.getStrFa('tags') + YL.lang("Rename"), function () {
                         that.shortSetting = group;
                     }, !YL.static.changeable],
-                    [YL.util.getStrFa('arrow-up') + YL.lang("ShiftUp"), function() {
+                    [YL.util.getStrFa('arrow-up') + YL.lang("ShiftUp"), function () {
                         Yuri2.arrUpRecord(that.tiles, groupIndex)
                     }, !YL.static.changeable],
-                    [YL.util.getStrFa('arrow-down') + YL.lang("ShiftDown"), function() {
+                    [YL.util.getStrFa('arrow-down') + YL.lang("ShiftDown"), function () {
                         Yuri2.arrDownRecord(that.tiles, groupIndex)
                     }, !YL.static.changeable],
-                    [YL.util.getStrFa('remove') + YL.lang("Delete"), function() {
-                        YL.util.simpleConfirm(Yuri2.template(YL.lang("DeleteGroupConfirm"), group.title), function() {
+                    [YL.util.getStrFa('remove') + YL.lang("Delete"), function () {
+                        YL.util.simpleConfirm(Yuri2.template(YL.lang("DeleteGroupConfirm"), group.title), function () {
                             that.tiles.splice(groupIndex, 1);
                         })
                     }, !YL.static.changeable],
                 ];
                 ContextMenu.render(e, menu, this);
             },
-            tileMoved: function() {
+            tileMoved: function () {
                 this.runtime.tileMoved = true;
             },
-            tileMouseDown: function(e1) {
+            tileMouseDown: function (e1) {
                 var that = this;
                 var x1 = e1.pageX;
                 var y1 = e1.pageY;
-                var fnMouseUp = function(e2) {
+                var fnMouseUp = function (e2) {
                     var x2 = e2.pageX;
                     var y2 = e2.pageY;
                     if (Math.abs(x2 - x1) + Math.abs(y2 - y1) > 5) {
@@ -1876,19 +1909,19 @@ YL.render = function(data) {
                 };
                 $(document).on("mouseup", fnMouseUp);
             },
-            tileClick: function(tile) {
+            tileClick: function (tile) {
                 if (!this.runtime.tileMoved) {
                     //打开
                     this.appOpen(tile.app, tile, tile)
                 }
                 this.runtime.tileMoved = false;
             },
-            btnShortSettingAdvanceClick: function(appId) {
+            btnShortSettingAdvanceClick: function (appId) {
                 //设置-高级按钮
                 this.shortSetting = null;
                 YL.open('yl-system', { data: { appSetting: appId } })
             },
-            shortSettingParamsAdd: function() {
+            shortSettingParamsAdd: function () {
                 //新增图标param属性 按钮点击
                 if (this.runtime.shortcutNewParamName && this.runtime.shortcutNewParamValue) {
                     if (!this.shortSetting.params) {
@@ -1899,23 +1932,23 @@ YL.render = function(data) {
                     this.runtime.shortcutNewParamValue = '';
                 }
             },
-            shortSettingParamsDelete: function(name) {
+            shortSettingParamsDelete: function (name) {
                 this.$delete(this.shortSetting.params, name);
             },
-            startMenuResizeMouseDown: function(e) {
+            startMenuResizeMouseDown: function (e) {
                 //拖动逻辑
                 var that = this;
                 var startMenu = that.runtime.startMenu;
                 startMenu.drag.x = e.pageX;
                 startMenu.drag.y = e.pageY;
                 startMenu.drag.mDown = true;
-                var fnMouseUp = function(e) {
+                var fnMouseUp = function (e) {
                     if (!startMenu.drag.mDown) return;
                     startMenu.drag.mDown = false;
                     $(document).unbind('mouseup', fnMouseUp);
                     $(document).unbind('mousemove', fnMouseMove);
                 };
-                var fnMouseMove = function(e) {
+                var fnMouseMove = function (e) {
                     if (!startMenu.drag.mDown) return;
                     var minWidth = 320;
                     var minHeight = 160;
@@ -1935,18 +1968,18 @@ YL.render = function(data) {
         },
         watch: {
             "shortSetting": {
-                handler: function(val, oldVal) {
+                handler: function (val, oldVal) {
                     if (val) {
                         this.drawer = null;
                     }
                 }
             },
             "configs.wallpaper": {
-                handler: function(val, oldVal) {
+                handler: function (val, oldVal) {
                     var that = this;
                     var img = new Image();
                     img.src = val;
-                    img.onload = function() {
+                    img.onload = function () {
                         that.runtime.wallpaper = val;
                         if (that.configs.autoThemeColor) {
                             that.backgroundToThemeColor()
@@ -1956,7 +1989,7 @@ YL.render = function(data) {
                 }
             },
             'wins': {
-                handler: function(val, oldVal) {
+                handler: function (val, oldVal) {
                     var count = 0;
                     for (var i in this.wins) {
                         var win = this.wins[i];
@@ -1968,7 +2001,7 @@ YL.render = function(data) {
                 }
             },
             "startMenu.open": {
-                handler: function(val, oldVal) {
+                handler: function (val, oldVal) {
                     //修复磁贴在全屏切换时布局混乱的bug,人为发出一个resize事件
                     if (val) {
                         this.$nextTick(YL.util.artificiallyResize);
@@ -1977,16 +2010,16 @@ YL.render = function(data) {
             },
             "startMenu.menu": {
                 // deep: true,
-                handler: function(val, oldVal) {
+                handler: function (val, oldVal) {
                     this.$nextTick(YL.util.artificiallyResize);
                 }
             }
         },
         computed: {
-            smallScreenAndMenuOpend: function() {
+            smallScreenAndMenuOpend: function () {
                 return this.runtime.isSmallScreen && this.startMenu.open
             },
-            tilesBoxStyle: function() {
+            tilesBoxStyle: function () {
                 var width = this.runtime.clientSize.width;
                 if (this.runtime.isSmallScreen) {
                     var left;
@@ -1997,7 +2030,7 @@ YL.render = function(data) {
                     left: this.runtime.isSmallScreen ? left + "px" : '312px',
                 }
             },
-            menuStyle: function() {
+            menuStyle: function () {
                 var width = this.runtime.clientSize.width;
                 if (this.runtime.isSmallScreen) {
                     return {
@@ -2005,7 +2038,7 @@ YL.render = function(data) {
                     }
                 } else return {};
             },
-            barStyle: function() {
+            barStyle: function () {
                 if (this.configs.topTaskBar) {
                     return {
                         top: 0,
@@ -2013,7 +2046,7 @@ YL.render = function(data) {
                     }
                 }
             },
-            centerStyle: function() {
+            centerStyle: function () {
                 if (this.configs.topTaskBar) {
                     return {
                         top: 40 + "px",
@@ -2024,7 +2057,7 @@ YL.render = function(data) {
                     }
                 }
             },
-            backgroundCross: function() {
+            backgroundCross: function () {
                 var r = this.runtime;
                 return r.wallpaperScale < r.clientSize.width / r.clientSize.height;
             }
