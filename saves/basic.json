@@ -2,7 +2,7 @@
     "configs": {
         "topTaskBar": false,
         "sound": false,
-        "wallpaper": "./res/img/wallpapers/bg7.jpg",
+        "wallpaper": "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fww3.sinaimg.cn%2Flarge%2F007Q5zgrgy1g3xepjbqcvj31hc0u0npe.jpg&refer=http%3A%2F%2Fwww.sina.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612527197&t=0d30a32782341b22cd79a23e41fb9a4d",
         "wallpaperBlur": false,
         "wallpaperSlide": false,
         "wallpaperSlideRandom": true,
@@ -10,8 +10,8 @@
         "wallpaperSlideTime": 1519442460788,
         "wallpaperSlideIndex": 8,
         "openMax": 9,
-        "idCounter": 211,
-        "themeColor": "rgba(53,110,121,1)",
+        "idCounter": 212,
+        "themeColor": "rgba(24,28,71,1)",
         "autoThemeColor": true,
         "wallpapers": [
             {
@@ -72,6 +72,14 @@
             {
                 "image": "./res/img/wallpapers/bg14.jpg",
                 "preview": "./res/img/wallpapers/bg14_1.jpg"
+            },
+            {
+                "image": "https://s3.ax1x.com/2021/01/06/sV5qZn.jpg",
+                "preview": ""
+            },
+            {
+                "image": "https://s3.ax1x.com/2021/01/06/sVIusH.jpg",
+                "preview": ""
             }
         ],
         "pathRes": "./res",
@@ -176,39 +184,6 @@
             },
             "title": "浏览器",
             "url": "./res/apps/browser/index.html",
-            "customTile": "",
-            "urlRandomToken": true
-        },
-        "yl-server": {
-            "addressBar": false,
-            "autoRun": 1,
-            "background": false,
-            "badge": 0,
-            "desc": "YLUI官方后台服务",
-            "icon": {
-                "type": "fa",
-                "content": "yoast",
-                "bg": "#6b96cf"
-            },
-            "openMode": "min",
-            "plugin": true,
-            "position": {
-                "autoOffset": false,
-                "left": false,
-                "top": false,
-                "x": "4",
-                "y": "4"
-            },
-            "version": "1.0.0",
-            "poweredBy": "Yuri2",
-            "resizable": true,
-            "single": true,
-            "size": {
-                "height": "80",
-                "width": "160"
-            },
-            "title": "YLUI官方后台服务",
-            "url": "https://server.ylui.yuri2.cn",
             "customTile": "",
             "urlRandomToken": true
         },
@@ -402,8 +377,8 @@
             "resizable": true,
             "single": false,
             "size": {
-                "height": "y*0.8-80",
-                "width": "x*0.8"
+                "height": "y*0.4",
+                "width": "x*0.5"
             },
             "title": "51VOA",
             "url": "http://51voa.com",
@@ -666,8 +641,8 @@
             "resizable": true,
             "single": false,
             "size": {
-                "height": "y*0.8-80",
-                "width": "x*0.8"
+                "height": "y*0.8",
+                "width": "x*0.3"
             },
             "title": "哔哩哔哩",
             "url": "//bilibili.com",
@@ -838,6 +813,39 @@
             "url": "f.html",
             "customTile": "",
             "urlRandomToken": true
+        },
+        "app-211": {
+            "addressBar": false,
+            "autoRun": 0,
+            "background": true,
+            "badge": 0,
+            "desc": "",
+            "icon": {
+                "type": "str",
+                "content": "天气",
+                "bg": "rgb(66,62,74)"
+            },
+            "openMode": "normal",
+            "plugin": true,
+            "position": {
+                "autoOffset": true,
+                "left": false,
+                "top": true,
+                "x": "x*0.02",
+                "y": "y*0.02"
+            },
+            "version": "1.0.0",
+            "poweredBy": "",
+            "resizable": false,
+            "single": true,
+            "size": {
+                "height": "195",
+                "width": "260"
+            },
+            "title": "天气",
+            "url": "https://tianqiapi.com/api.php?style=tk&skin=cake",
+            "customTile": "",
+            "urlRandomToken": true
         }
     },
     "shortcuts": [
@@ -875,7 +883,20 @@
             "app": "app-195",
             "title": "51VOA",
             "params": {},
-            "hash": ""
+            "hash": "",
+            "style": {
+                "position": {
+                    "x": 487.6410217285156,
+                    "y": 36.491233825683594,
+                    "left": true,
+                    "top": true,
+                    "autoOffset": false
+                },
+                "size": {
+                    "height": 224,
+                    "width": 480
+                }
+            }
         },
         {
             "app": "app-197",
@@ -980,8 +1001,8 @@
         }
     ],
     "startMenu": {
-        "width": 620,
-        "height": 494,
+        "width": 960,
+        "height": 600,
         "sidebar": [
             {
                 "app": "app-190",
