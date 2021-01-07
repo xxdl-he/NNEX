@@ -2,7 +2,7 @@
     "configs": {
         "topTaskBar": false,
         "sound": false,
-        "wallpaper": "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fww3.sinaimg.cn%2Flarge%2F007Q5zgrgy1g3xepjbqcvj31hc0u0npe.jpg&refer=http%3A%2F%2Fwww.sina.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1612527197&t=0d30a32782341b22cd79a23e41fb9a4d",
+        "wallpaper": "https://s3.ax1x.com/2021/01/06/sVIusH.jpg",
         "wallpaperBlur": false,
         "wallpaperSlide": false,
         "wallpaperSlideRandom": true,
@@ -10,7 +10,7 @@
         "wallpaperSlideTime": 1519442460788,
         "wallpaperSlideIndex": 8,
         "openMax": 9,
-        "idCounter": 212,
+        "idCounter": 215,
         "themeColor": "rgba(24,28,71,1)",
         "autoThemeColor": true,
         "wallpapers": [
@@ -154,39 +154,6 @@
             "customTile": "",
             "urlRandomToken": true
         },
-        "yl-browser": {
-            "addressBar": true,
-            "autoRun": 0,
-            "background": false,
-            "badge": 0,
-            "desc": "浏览器",
-            "icon": {
-                "type": "fa",
-                "content": "internet-explorer",
-                "bg": "#3a55c2"
-            },
-            "openMode": "normal",
-            "plugin": false,
-            "position": {
-                "autoOffset": true,
-                "left": true,
-                "top": true,
-                "x": "x*0.1",
-                "y": "y*0.1"
-            },
-            "version": "1.0.0",
-            "poweredBy": "Yuri2",
-            "resizable": true,
-            "single": false,
-            "size": {
-                "height": "y*0.8-80",
-                "width": "x*0.8"
-            },
-            "title": "浏览器",
-            "url": "./res/apps/browser/index.html",
-            "customTile": "",
-            "urlRandomToken": true
-        },
         "ylui-fa": {
             "addressBar": false,
             "autoRun": 0,
@@ -283,39 +250,6 @@
             },
             "title": "西窗烛",
             "url": "http://lib.xcz.im/library",
-            "customTile": "",
-            "urlRandomToken": true
-        },
-        "app-193": {
-            "addressBar": false,
-            "autoRun": 0,
-            "background": false,
-            "badge": 0,
-            "desc": "",
-            "icon": {
-                "type": "fa",
-                "content": "pencil",
-                "bg": "rgb(61,55,200)"
-            },
-            "openMode": "normal",
-            "plugin": false,
-            "position": {
-                "autoOffset": true,
-                "left": true,
-                "top": true,
-                "x": "x*0.05",
-                "y": "y*0.05"
-            },
-            "version": "1.0.0",
-            "poweredBy": "",
-            "resizable": true,
-            "single": false,
-            "size": {
-                "height": "y*0.8-80",
-                "width": "x*0.8"
-            },
-            "title": "简记",
-            "url": "http://xxdlyzbb.gitee.io/vue-memo/",
             "customTile": "",
             "urlRandomToken": true
         },
@@ -816,7 +750,7 @@
         },
         "app-211": {
             "addressBar": false,
-            "autoRun": 0,
+            "autoRun": 1,
             "background": true,
             "badge": 0,
             "desc": "",
@@ -846,15 +780,141 @@
             "url": "https://tianqiapi.com/api.php?style=tk&skin=cake",
             "customTile": "",
             "urlRandomToken": true
+        },
+        "Getman": {
+            "addressBar": false,
+            "autoRun": 0,
+            "background": false,
+            "badge": 0,
+            "desc": "",
+            "icon": {
+                "type": "str",
+                "content": "Getman",
+                "bg": "rgb(154,168,168)"
+            },
+            "openMode": "normal",
+            "plugin": false,
+            "position": {
+                "autoOffset": true,
+                "left": true,
+                "top": true,
+                "x": "x*0.05",
+                "y": "y*0.05"
+            },
+            "version": "1.0.0",
+            "poweredBy": "",
+            "resizable": true,
+            "single": false,
+            "size": {
+                "height": "y*0.8-80",
+                "width": "x*0.8"
+            },
+            "title": "Getman",
+            "url": "https://getman.cn/",
+            "customTile": "",
+            "urlRandomToken": true
+        },
+        "app-212": {
+            "addressBar": false,
+            "autoRun": 0,
+            "background": false,
+            "badge": 0,
+            "desc": "",
+            "icon": {
+                "type": "str",
+                "content": "智学网",
+                "bg": "rgb(11,170,9)"
+            },
+            "openMode": "max",
+            "plugin": false,
+            "position": {
+                "autoOffset": true,
+                "left": true,
+                "top": true,
+                "x": "x*0.05",
+                "y": "y*0.05"
+            },
+            "version": "1.0.0",
+            "poweredBy": "",
+            "resizable": true,
+            "single": false,
+            "size": {
+                "height": "y*0.8-80",
+                "width": "x*0.8"
+            },
+            "title": "智学网",
+            "url": "//xf.zhixue.com",
+            "customTile": "",
+            "urlRandomToken": true
+        },
+        "app-213": {
+            "addressBar": false,
+            "autoRun": 0,
+            "background": false,
+            "badge": 0,
+            "desc": "",
+            "icon": {
+                "type": "str",
+                "content": "畅言数据中心",
+                "bg": "rgb(163,28,59)"
+            },
+            "openMode": "normal",
+            "plugin": false,
+            "position": {
+                "autoOffset": true,
+                "left": true,
+                "top": true,
+                "x": "x*0.05",
+                "y": "y*0.05"
+            },
+            "version": "1.0.0",
+            "poweredBy": "",
+            "resizable": true,
+            "single": false,
+            "size": {
+                "height": "y*0.8-80",
+                "width": "x*0.8"
+            },
+            "title": "畅言数据中心",
+            "url": "//data.changyan.com",
+            "customTile": "",
+            "urlRandomToken": true
+        },
+        "app-214": {
+            "addressBar": false,
+            "autoRun": 0,
+            "background": false,
+            "badge": 0,
+            "desc": "",
+            "icon": {
+                "type": "str",
+                "content": "印象笔记",
+                "bg": "rgb(110,152,44)"
+            },
+            "openMode": "normal",
+            "plugin": false,
+            "position": {
+                "autoOffset": true,
+                "left": true,
+                "top": true,
+                "x": "x*0.05",
+                "y": "y*0.05"
+            },
+            "version": "1.0.0",
+            "poweredBy": "",
+            "resizable": true,
+            "single": false,
+            "size": {
+                "height": "y*0.8-80",
+                "width": "x*0.8"
+            },
+            "title": "印象笔记",
+            "url": "https://app.yinxiang.com/Login.action",
+            "customTile": "",
+            "urlRandomToken": true
         }
     },
     "shortcuts": [
-        {
-            "app": "yl-browser",
-            "title": "浏览器",
-            "params": {},
-            "hash": ""
-        },
         {
             "app": "app-190",
             "title": "Nicemusic",
@@ -864,12 +924,6 @@
         {
             "app": "app-192",
             "title": "西窗烛",
-            "params": {},
-            "hash": ""
-        },
-        {
-            "app": "app-193",
-            "title": "简记",
             "params": {},
             "hash": ""
         },
@@ -969,6 +1023,24 @@
             "title": "PHP",
             "params": {},
             "hash": ""
+        },
+        {
+            "app": "app-212",
+            "title": "智学网",
+            "params": {},
+            "hash": ""
+        },
+        {
+            "app": "app-213",
+            "title": "畅言数据中心",
+            "params": {},
+            "hash": ""
+        },
+        {
+            "app": "app-214",
+            "title": "印象笔记",
+            "params": {},
+            "hash": ""
         }
     ],
     "tiles": [
@@ -977,23 +1049,12 @@
             "data": [
                 {
                     "x": 0,
-                    "y": 2,
+                    "y": 0,
                     "w": 4,
                     "h": 2,
                     "app": "yl-system",
                     "title": "系统设置",
                     "i": "110",
-                    "params": {},
-                    "hash": ""
-                },
-                {
-                    "x": 2,
-                    "y": 0,
-                    "w": 2,
-                    "h": 2,
-                    "app": "yl-browser",
-                    "title": "浏览器",
-                    "i": "146",
                     "params": {},
                     "hash": ""
                 }
@@ -1011,23 +1072,11 @@
                 "hash": ""
             },
             {
-                "app": "yl-browser",
-                "title": "浏览器",
-                "params": {},
-                "hash": ""
-            },
-            {
                 "app": "yl-system",
                 "title": "系统设置"
             }
         ],
         "menu": {
-            "itemPushed-85": {
-                "app": "yl-browser",
-                "title": "浏览器",
-                "params": {},
-                "hash": ""
-            },
             "itemPushed-96": {
                 "app": "yl-system",
                 "title": "系统设置",
