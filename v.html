@@ -2,98 +2,91 @@
 <html>
 
 <head>
-    <style>
-            {
-            margin: 0px;
-            padding: 0px;
-        }
-        
-        video {
-            position: fixed;
-            right: 0px;
-            bottom: 0px;
-            min-width: 100%;
-            min-height: 100%;
-            height: auto;
-            width: auto;
-            /*filter: blur(15px); //背景模糊设置 */
-            /*-webkit-filter: grayscale(100%);*/
-            /*filter:grayscale(100%); //背景灰度设置*/
-            z-index: -11
-        }
-        
-        source {
-            min-width: 100%;
-            min-height: 100%;
-            height: auto;
-            width: auto;
-        }
-        
-        div {
-            font-family: Agenda-Light, Agenda Light, Agenda, Arial Narrow, sans-serif;
-            font-weight: 100;
-            background: rgba(0, 0, 0, 0.3);
-            color: white;
-            padding: 2rem;
-            width: 33%;
-            margin: 2rem;
-            float: right;
-            font-size: 1.2rem;
-        }
-        
-        h1 {
-            font-size: 1.7rem;
-            text-transform: uppercase;
-            margin-top: 0;
-            letter-spacing: .1.7rem;
-        }
-        
-        a {
-            display: inline-block;
-            color: #fff;
-            text-decoration: none;
-            background: rgba(0, 0, 0, 0.5);
-            padding: .5rem;
-            transition: .6s background;
-        }
-        
-        a:hover {
-            background: rgba(0, 0, 0, 0.9);
-        }
-        
-        @media screen and (max-width: 500px) {
-            div {
-                width: 70%;
-            }
-        }
-        
-        @media screen and (max-device-width: 800px) {
-            #bgvid {
-                display: none;
-            }
-    </style>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<style>
+			{
+			margin: 0px;
+			padding: 0px;
+		}
+		
+		video {
+			position: fixed;
+			right: 0px;
+			bottom: 0px;
+			min-width: 100%;
+			min-height: 100%;
+			height: auto;
+			width: auto;
+			/*filter: blur(15px); //背景模糊设置 */
+			/*-webkit-filter: grayscale(100%);*/
+			/*filter:grayscale(100%); //背景灰度设置*/
+			z-index: -11
+		}
+		
+		div {
+			font-family: Agenda-Light, Agenda Light, Agenda, Arial Narrow, sans-serif;
+			font-weight: 100;
+			background: rgba(0, 0, 0, 0.3);
+			color: white;
+			padding: 2rem;
+			width: 33%;
+			margin: 2rem;
+			float: right;
+			font-size: 1.2rem;
+		}
+		
+		h1 {
+			font-size: 1.7rem;
+			text-transform: uppercase;
+			margin-top: 0;
+			letter-spacing: .1.7rem;
+		}
+		
+		a {
+			display: inline-block;
+			color: #fff;
+			text-decoration: none;
+			background: rgba(0, 0, 0, 0.5);
+			padding: .5rem;
+			transition: .6s background;
+		}
+		
+		a:hover {
+			background: rgba(0, 0, 0, 0.9);
+		}
+		
+		@media screen and (max-width: 500px) {
+			div {
+				width: 70%;
+			}
+		}
+		
+		@media screen and (max-device-width: 800px) {
+			#bgvid {
+				display: none;
+			}
+	</style>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+	/>
 </head>
 
 <body>
-    <script type="text/javascript" src="https://wow.techbrood.com/libs/jquery/jquery-2.1.1.min.js"></script>
-    <video  src="https://crazynote.v.netease.com/2018/0328/84e0cc7f851331c91b2ed2c37d362717qt.mp4" id="v1" autoplay loop>
+	<script type="text/javascript" src="https://wow.techbrood.com/libs/jquery/jquery-2.1.1.min.js"></script>
+	<video src="https://crazynote.v.netease.com/2018/0328/84e0cc7f851331c91b2ed2c37d362717qt.mp4" id="v1" autoplay loop>
 	</video>
-    <script>
-        function gq(name) {
-            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象  
-            var r = window.location.search.substr(1).match(reg); //匹配目标参数
+	<script>
+		function gq(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
             if (r != null) return decodeURI(r[2]);
             return null;
         }
         function p(){if (gq('r')!=null){
         document.getElementById('v1').src = gq('r')
         }
-        else{
-                        document.write('视频加载失败！')
+        else{ document.write('视频加载失败！')
         }}
         window.onload=p()
-    </script>
+	</script>
 </body>
 
 </html>
