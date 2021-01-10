@@ -87,7 +87,12 @@
             if (r != null) return decodeURI(r[2]);
             return null;
         }
+        if (gq('r')!=null){
         document.getElementById('idf').src = gq('r')
+        }
+        else{
+                        document.write('视频加载失败！')
+        }
     </script>
 </body>
 
