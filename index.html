@@ -266,7 +266,7 @@
                                             <div class="badge" v-show="apps[tile.app].badge">
                                                 {{badgeText(apps[tile.app].badge)}}
                                             </div>
-                                            <iframe class="custom-tile" v-if="apps[tile.app].customTile" frameborder="0" scrolling="no" hspace="0" :src="tileSrcCustom(apps[tile.app])"></iframe>
+                                            <iframe security="restricted" allowfullscreen="true" sandbox="allow-presentation allow-popups-to-escape-sandbox allow-popups allow-scripts allow-forms allow-same-origin" class="custom-tile" v-if="apps[tile.app].customTile" frameborder="0" scrolling="no" hspace="0" :src="tileSrcCustom(apps[tile.app])"></iframe>
                                             <yl-icon v-else :icon="apps[tile.app].icon" :badge="0" :style="tileStyle(tile)"></yl-icon>
                                             <div v-show="Math.min(tile.w,tile.h)*runtime.tileSize>80" class="title">
                                                 {{tile.title}}
