@@ -156,7 +156,7 @@
 
                     <div class="win-drag-placeholder">
                         <div class="mask" style="z-index: 2" v-show="runtime.drag"></div>
-                        <iframe :id="w.idIframe" :name="id" class="frm" security="restricted" allowfullscreen="true" sandbox="allow-presentation allow-popups-to-escape-sandbox allow-popups allow-scripts allow-forms allow-same-origin" :src="w.url"></iframe>
+                        <iframe :id="w.idIframe" :name="id" class="frm" security="restricted" allowtransparency="true" allowfullscreen="true" sandbox="allow-presentation allow-popups-to-escape-sandbox allow-popups allow-scripts allow-forms allow-same-origin" :src="w.url"></iframe>
                         <div v-show="w.resizable" class="win-resize" @mousedown="winResizeMouseDown(id,$event)"></div>
                         <div class="win-move" @contextMenu="winContextMenu(id,$event)" @mousedown="winTitleMouseDown(id,$event)" @touchstart="winTitleMouseDown(id,$event)"></div>
                     </div>
@@ -266,7 +266,7 @@
                                             <div class="badge" v-show="apps[tile.app].badge">
                                                 {{badgeText(apps[tile.app].badge)}}
                                             </div>
-                                            <iframe security="restricted" allowfullscreen="true" sandbox="allow-presentation allow-popups-to-escape-sandbox allow-popups allow-scripts allow-forms allow-same-origin" class="custom-tile" v-if="apps[tile.app].customTile" frameborder="0" scrolling="no" hspace="0" :src="tileSrcCustom(apps[tile.app])"></iframe>
+                                            <iframe security="restricted" allowtransparency="true" allowfullscreen="true" sandbox="allow-presentation allow-popups-to-escape-sandbox allow-popups allow-scripts allow-forms allow-same-origin" class="custom-tile" v-if="apps[tile.app].customTile" frameborder="0" scrolling="no" hspace="0" :src="tileSrcCustom(apps[tile.app])"></iframe>
                                             <yl-icon v-else :icon="apps[tile.app].icon" :badge="0" :style="tileStyle(tile)"></yl-icon>
                                             <div v-show="Math.min(tile.w,tile.h)*runtime.tileSize>80" class="title">
                                                 {{tile.title}}
