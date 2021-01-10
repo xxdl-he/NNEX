@@ -77,8 +77,7 @@
 
 <body>
     <script type="text/javascript" src="https://wow.techbrood.com/libs/jquery/jquery-2.1.1.min.js"></script>
-    <video id="v1" autoplay loop>
-		<source id='idf' src="https://crazynote.v.netease.com/2018/0328/84e0cc7f851331c91b2ed2c37d362717qt.mp4" />
+    <video  src="https://crazynote.v.netease.com/2018/0328/84e0cc7f851331c91b2ed2c37d362717qt.mp4" id="v1" autoplay loop>
 	</video>
     <script>
         function gq(name) {
@@ -88,7 +87,7 @@
             return null;
         }
         function p(){if (gq('r')!=null){
-        document.getElementById('idf').src = gq('r')
+        document.getElementById('v1').src = gq('r')
         }
         else{
                         document.write('视频加载失败！')
