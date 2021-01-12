@@ -241,7 +241,7 @@ _TD.a.push(function (TD) {
 						} else if (TD.difficulty > 30) {
 							TD.difficulty *= 1.1;
 						} else {
-							TD.difficulty *= 1.2;
+							TD.difficulty *= 1.8;
 						}
 					} else if (TD.wave_damage >= 50) {
 						TD.difficulty *= 0.6;
