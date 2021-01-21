@@ -180,7 +180,7 @@
                 <div class="line"></div>
             </div>
             <!--显示桌面-->
-            <div id="yl-btn-right-bottom" @click="if(smallScreenAndMenuOpend){runtime.menuOnLeft=!runtime.menuOnLeft} else {showDesktop()}" :class="{'fa-exchange':smallScreenAndMenuOpend}" class="btn shadow-hover fa fa-fw"></div>
+            <div p="1" id="yl-btn-right-bottom" @click="if(smallScreenAndMenuOpend){runtime.menuOnLeft=!runtime.menuOnLeft} else {showDesktop()}" :class="{'fa-exchange':smallScreenAndMenuOpend}" class="btn shadow-hover fa fa-fw"></div>
             <!--消息-->
             <div id="yl-btn-center" class="btn shadow-hover " style="float: right" @click="btnCenterClick()">
                 <div class="badge" :style="{bottom:configs.topTaskBar?'-18px':'none',top:configs.topTaskBar?'auto':'0'}" v-show="center.unread">{{center.unread>99?'99+':center.unread}}
